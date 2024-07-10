@@ -7,6 +7,11 @@ module.exports = {
 	],
 	theme: {
 		extend: {
+			colors: {
+				zinc: "#27272a",
+				lime: "#65a30d",
+				"lime-dark": "#4d7c0f",
+			},
 			fontFamily: {
 				sans: ["Poppins", "sans-serif"],
 			},
