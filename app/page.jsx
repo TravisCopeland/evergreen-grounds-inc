@@ -1,9 +1,12 @@
+import BasicInfo from "@/components/BasicInfo";
+import RequestQuoteForm from "@/components/RequestQuoteForm";
+
 const HomePage = () => {
 	return (
-		<>
-			<h1>Evergreen Grounds Inc.</h1>
-			<h2>Servicing North Atlanta since 1983</h2>
-		</>
+		<div className="bg-zinc flex flex-row gap-4 py-4">
+			<BasicInfo />
+			<RequestQuoteForm />
+		</div>
 	);
 };
 
