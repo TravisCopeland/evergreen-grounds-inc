@@ -1,4 +1,3 @@
-import Header from "@/components/Header";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import "@/assets/styles/globals.css";
@@ -13,7 +12,6 @@ const RootLayout = ({ children }) => {
 	return (
 		<html lang="en">
 			<body>
-				<Header />
 				<NavBar />
 				<main>{children}</main>
 				<Footer />
