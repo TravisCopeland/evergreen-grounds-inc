@@ -43,12 +43,12 @@ const NavBar = () => {
 						</button>
 					</div>
 
-					<div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
+					<div className="flex flex-1 items-center justify-center md:items-stretch">
 						{/* <!-- Logo --> */}
 						<Link className="flex flex-shrink-0 items-center" href="/">
 							{/* <Image className="h-10 w-auto" src={logo} alt="PropertyPulse" /> */}
 
-							<span className="block text-white text-2xl font-bold ml-2">
+							<span className="block text-white text-4xl font-bold ml-2">
 								Evergreen Grounds Inc.
 							</span>
 						</Link>
@@ -59,7 +59,7 @@ const NavBar = () => {
 									href="/"
 									className={`${
 										pathname === "/" ? "bg-lime" : ""
-									} text-white hover:bg-lime-dark hover:text-white rounded-md px-3 py-2`}
+									} text-white text-xl hover:bg-lime-dark hover:text-white rounded-md px-3 py-2`}
 								>
 									Home
 								</Link>
@@ -67,7 +67,7 @@ const NavBar = () => {
 									href="/services"
 									className={`${
 										pathname === "/services" ? "bg-lime" : ""
-									} text-white hover:bg-lime-dark hover:text-white rounded-md px-3 py-2`}
+									} text-white text-xl hover:bg-lime-dark hover:text-white rounded-md px-3 py-2`}
 								>
 									Services
 								</Link>
@@ -75,7 +75,7 @@ const NavBar = () => {
 									href="/contact-us"
 									className={`${
 										pathname === "/contact-us" ? "bg-lime" : ""
-									} text-white hover:bg-lime-dark hover:text-white rounded-md px-3 py-2`}
+									} text-white text-xl hover:bg-lime-dark hover:text-white rounded-md px-3 py-2`}
 								>
 									Contact Us
 								</Link>
