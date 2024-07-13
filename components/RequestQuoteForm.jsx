@@ -7,6 +7,7 @@ const RequestQuoteForm = () => {
 		email: "",
 		address: "",
 		phone: "",
+		description: "",
 	};
 
 	const [formValues, setFormValues] = useState(defaultFormValues);
@@ -27,10 +28,10 @@ const RequestQuoteForm = () => {
 	};
 
 	return (
-		<section className="w-1/2">
+		<section className="md:w-1/2 p-16">
 			<div className="flex flex-col justify-center border-solid border-2 border-lime rounded-lg p-12">
 				<p className="text-white text-3xl font-semibold text-center pb-4">
-					Request an Estimate
+					Request Quote
 				</p>
 				<form
 					className="text-white flex flex-col justify-center"
@@ -72,11 +73,21 @@ const RequestQuoteForm = () => {
 						value={formValues.phone}
 						onChange={handleInputChange}
 					/>
+					<textarea
+						className="text-black border-solid border-2 border-lime rounded-lg p-2 my-4 h-auto"
+						type="text"
+						id="description"
+						name="description"
+						placeholder="Enter a brief description of services requested..."
+						rows={5}
+						value={formValues.description}
+						onChange={handleInputChange}
+					/>
 					<button
 						className="bg-lime hover:bg-lime-dark p-2 mt-2 mb-2 rounded-lg w-auto"
 						type="submit"
 					>
-						Request an Estimate
+						Request Quote
 					</button>
 				</form>
 			</div>
