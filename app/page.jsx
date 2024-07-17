@@ -5,7 +5,7 @@ const HomePage = () => {
 	return (
 		<div className="bg-zinc flex flex-col md:flex-row">
 			<BasicInfo />
-			<RequestQuoteForm />
+			<RequestQuoteForm width="1/2" />
 		</div>
 	);
 };
