@@ -11,6 +11,7 @@ module.exports = {
 				zinc: "#27272a",
 				lime: "#65a30d",
 				"lime-dark": "#4d7c0f",
+				"error-red": "#f21e08",
 			},
 			fontFamily: {
 				sans: ["Poppins", "sans-serif"],

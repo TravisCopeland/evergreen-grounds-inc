@@ -1,30 +1,17 @@
 "use client";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 const RequestQuoteForm = () => {
-	const defaultFormValues = {
-		fullName: "",
-		email: "",
-		address: "",
-		phone: "",
-		description: "",
-	};
+	const {
+		register,
+		handleSubmit,
+		reset,
+		formState: { errors },
+	} = useForm();
 
-	const [formValues, setFormValues] = useState(defaultFormValues);
-
-	const handleInputChange = (e) => {
-		const { name, value } = e.target;
-
-		setFormValues({
-			...formValues,
-			[name]: value,
-		});
-	};
-
-	const handleFormSubmit = (e) => {
-		e.preventDefault();
-		console.log("form submitted", formValues);
-		setFormValues(defaultFormValues);
+	const handleFormSubmit = (data) => {
+		console.log(data);
+		reset();
 	};
 
 	return (
@@ -35,43 +22,68 @@ const RequestQuoteForm = () => {
 				</p>
 				<form
 					className="text-white flex flex-col justify-center"
-					onSubmit={handleFormSubmit}
+					onSubmit={handleSubmit(handleFormSubmit)}
 				>
-					<label htmlFor="fullName">Full Name</label>
+					<label htmlFor="name">Name</label>
 					<input
 						className="text-black border-solid border-2 border-lime rounded-lg p-2 mb-2"
 						type="text"
-						id="fullName"
-						name="fullName"
-						value={formValues.fullName}
-						onChange={handleInputChange}
+						id="name"
+						name="name"
+						autoComplete="on"
+						{...register("name", { required: "Name is required" })}
 					/>
+					{errors.name && (
+						<p className="text-error-red text-sm font-bold pb-2">
+							{errors.name.message}
+						</p>
+					)}
 					<label htmlFor="email">Email</label>
 					<input
 						className="text-black border-solid border-2 border-lime rounded-lg p-2 mb-2"
-						type="email"
+						type="text"
 						id="email"
 						name="email"
-						value={formValues.email}
-						onChange={handleInputChange}
+						autoComplete="on"
+						{...register("email", {
+							required: "Email is required",
+							validate: {
+								matchPattern: (value) => /^[^@]+@[^@]+\.[^@]+$/.test(value),
+							},
+						})}
 					/>
+					{errors.email?.type === "required" && (
+						<p className="text-error-red text-sm font-bold pb-2">
+							{errors.email.message}
+						</p>
+					)}
+					{errors.email?.type === "matchPattern" && (
+						<p className="text-error-red text-sm font-bold pb-2">
+							Please enter a valid email
+						</p>
+					)}
 					<label htmlFor="address">Address</label>
 					<input
 						className="text-black border-solid border-2 border-lime rounded-lg p-2 mb-2"
 						type="text"
 						id="address"
 						name="address"
-						value={formValues.address}
-						onChange={handleInputChange}
+						autoComplete="on"
+						{...register("address", { required: "Address is required" })}
 					/>
+					{errors.address && (
+						<p className="text-error-red text-sm font-bold pb-2">
+							{errors.address.message}
+						</p>
+					)}
 					<label htmlFor="phone">Phone</label>
 					<input
 						className="text-black border-solid border-2 border-lime rounded-lg p-2 mb-2"
 						type="text"
 						id="phone"
 						name="phone"
-						value={formValues.phone}
-						onChange={handleInputChange}
+						autoComplete="on"
+						{...register("phone")}
 					/>
 					<textarea
 						className="text-black border-solid border-2 border-lime rounded-lg p-2 my-4 h-auto"
@@ -80,8 +92,7 @@ const RequestQuoteForm = () => {
 						name="description"
 						placeholder="Enter a brief description of services requested..."
 						rows={5}
-						value={formValues.description}
-						onChange={handleInputChange}
+						{...register("description")}
 					/>
 					<button
 						className="bg-lime hover:bg-lime-dark p-2 mt-2 mb-2 rounded-lg w-auto"
