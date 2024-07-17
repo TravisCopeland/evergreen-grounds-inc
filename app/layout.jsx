@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import "@/assets/styles/globals.css";
 
 export const metadata = {
-	title: "Evergreen Grounds Inc.",
+	title: "Evergreen Grounds, Inc.",
 	description: "Providing all your landscaping needs",
 	keywords: "landscaping, landscaping company, landscapers, licensed, insured",
 };
