@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-// import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
-// import logo from "@/assets/images/logo-white.png";
+import logo from "@/assets/images/logo-standard-white.png";
 
 const NavBar = () => {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -11,7 +11,7 @@ const NavBar = () => {
 	const pathname = usePathname();
 
 	return (
-		<nav className="bg-zinc border-b border-zinc">
+		<nav className="bg-zinc border-zinc w-full">
 			<div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
 				<div className="relative flex h-20 items-center justify-between">
 					<div className="absolute inset-y-0 left-0 flex items-center md:hidden">
@@ -43,17 +43,19 @@ const NavBar = () => {
 						</button>
 					</div>
 
-					<div className="flex flex-1 items-center justify-center md:items-stretch">
-						{/* <!-- Logo --> */}
-						<Link className="flex flex-shrink-0 items-center" href="/">
-							{/* <Image className="h-10 w-auto" src={logo} alt="PropertyPulse" /> */}
-
-							<span className="block text-white text-4xl font-bold ml-2">
-								Evergreen Grounds Inc.
-							</span>
+					<div className="flex flex-1 items-center justify-center md:justify-start md:pt-16">
+						<Link
+							className="flex flex-1 items-center justify-center md:justify-start"
+							href="/"
+						>
+							<Image
+								className="h-12 md:h-28 w-auto"
+								src={logo}
+								alt="Evergreen Grounds, Inc."
+							/>
 						</Link>
-						{/* <!-- Desktop Menu Hidden below md screens --> */}
-						<div className="hidden md:ml-6 md:block">
+						{/* <!-- Desktop Menu - Hidden below md screens --> */}
+						<div className="hidden flex-1 md:block md:justify-center">
 							<div className="flex space-x-2">
 								<Link
 									href="/"
