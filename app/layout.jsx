@@ -1,6 +1,8 @@
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
+import { ToastContainer } from "react-toastify";
 import "@/assets/styles/globals.css";
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata = {
 	title: "Evergreen Grounds, Inc.",
@@ -15,6 +17,7 @@ const RootLayout = ({ children }) => {
 				<NavBar />
 				<main>{children}</main>
 				<Footer />
+				<ToastContainer />
 			</body>
 		</html>
 	);
