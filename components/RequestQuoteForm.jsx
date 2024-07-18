@@ -17,7 +17,7 @@ const RequestQuoteForm = () => {
 	return (
 		<section className={`md:w-1/2 p-2 md:p-16`}>
 			<div className="flex flex-col justify-center border-solid border-2 border-lime rounded-lg p-6 md:p-12">
-				<p className="text-white text-3xl font-semibold text-center pb-4">
+				<p className="text-white text-xl md:text-3xl font-semibold text-center pb-4">
 					Request Quote
 				</p>
 				<form
