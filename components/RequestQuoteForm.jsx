@@ -35,6 +35,7 @@ const RequestQuoteForm = () => {
 				},
 				(error) => {
 					console.log("FAILED...", error.text);
+					toast.error("Something Went Wrong... Try Again");
 				}
 			)
 			.finally(() => {
