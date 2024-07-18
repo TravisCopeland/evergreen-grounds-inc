@@ -1,5 +1,9 @@
 "use client";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import Spinner from "@/components/Spinner";
+import emailjs from "@emailjs/browser";
 
 const RequestQuoteForm = () => {
 	const {
@@ -9,9 +13,33 @@ const RequestQuoteForm = () => {
 		formState: { errors },
 	} = useForm();
 
-	const handleFormSubmit = (data) => {
-		console.log(data);
-		reset();
+	const form = useRef();
+
+	const [loading, setLoading] = useState(false);
+
+	const serviceId = process.env.NEXT_PUBLIC_SERVICE_ID;
+	const templateId = process.env.NEXT_PUBLIC_TEMPLATE_ID;
+	const myPublicKey = process.env.NEXT_PUBLIC_KEY;
+
+	const handleFormSubmit = () => {
+		setLoading(true);
+		emailjs
+			.sendForm(serviceId, templateId, form.current, {
+				publicKey: myPublicKey,
+			})
+			.then(
+				() => {
+					console.log("SUCCESS");
+					toast.success("Quote Request Sent Successfully");
+					reset();
+				},
+				(error) => {
+					console.log("FAILED...", error.text);
+				}
+			)
+			.finally(() => {
+				setLoading(false);
+			});
 	};
 
 	return (
@@ -21,6 +49,7 @@ const RequestQuoteForm = () => {
 					Request Free Quote
 				</p>
 				<form
+					ref={form}
 					className="text-white flex flex-col justify-center"
 					onSubmit={handleSubmit(handleFormSubmit)}
 				>
@@ -104,7 +133,7 @@ const RequestQuoteForm = () => {
 						className="bg-lime hover:bg-lime-dark p-2 mt-2 mb-2 rounded-lg w-auto"
 						type="submit"
 					>
-						Request Quote
+						{loading ? <Spinner loading={loading} /> : "Request Quote"}
 					</button>
 				</form>
 			</div>
