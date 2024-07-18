@@ -18,13 +18,15 @@ const RequestQuoteForm = () => {
 		<section className={`md:w-1/2 p-2 md:p-16`}>
 			<div className="flex flex-col justify-center border-solid border-2 border-lime rounded-lg p-6 md:p-12">
 				<p className="text-white text-xl md:text-3xl font-semibold text-center pb-4">
-					Request Quote
+					Request Free Quote
 				</p>
 				<form
 					className="text-white flex flex-col justify-center"
 					onSubmit={handleSubmit(handleFormSubmit)}
 				>
-					<label htmlFor="name">Name</label>
+					<label htmlFor="name">
+						Name<span className="text-red-500"> *</span>
+					</label>
 					<input
 						className="text-black border-solid border-2 border-lime rounded-lg p-2 mb-2"
 						type="text"
@@ -38,7 +40,9 @@ const RequestQuoteForm = () => {
 							{errors.name.message}
 						</p>
 					)}
-					<label htmlFor="email">Email</label>
+					<label htmlFor="email">
+						Email<span className="text-red-500"> *</span>
+					</label>
 					<input
 						className="text-black border-solid border-2 border-lime rounded-lg p-2 mb-2"
 						type="text"
@@ -62,7 +66,9 @@ const RequestQuoteForm = () => {
 							Please enter a valid email
 						</p>
 					)}
-					<label htmlFor="address">Address</label>
+					<label htmlFor="address">
+						Address<span className="text-red-500"> *</span>
+					</label>
 					<input
 						className="text-black border-solid border-2 border-lime rounded-lg p-2 mb-2"
 						type="text"
