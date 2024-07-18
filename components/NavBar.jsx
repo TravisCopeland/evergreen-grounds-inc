@@ -52,6 +52,7 @@ const NavBar = () => {
 								className="h-12 md:h-28 w-auto"
 								src={logo}
 								alt="Evergreen Grounds, Inc."
+								priority={true}
 							/>
 						</Link>
 						{/* <!-- Desktop Menu - Hidden below md screens --> */}
