@@ -2,12 +2,12 @@ import { FaDotCircle, FaPhone, FaEnvelope } from "react-icons/fa";
 
 const BasicInfo = () => {
 	const cities = [
+		"Acworth",
+		"Alpharetta",
 		"Cartersville",
 		"Dallas",
-		"Acworth",
 		"Kennesaw",
-		"Marietta",
-		"Canton",
+		"Roswell",
 		"Woodstock",
 	];
 
