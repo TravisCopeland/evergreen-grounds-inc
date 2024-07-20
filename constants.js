@@ -11,7 +11,7 @@ export const cities = [
 export const maintenanceInfo = [
 	"Mowing",
 	"Edging & Blowing",
-	"Leaf & Stick Clean Up",
+	"Lawn & Leaf Clean Up",
 	"Seasonal Pruning",
 	"Flower Bed Weed Control",
 	"Shrub Pruning",

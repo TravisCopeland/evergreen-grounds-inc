@@ -5,7 +5,7 @@ import { FaPhone, FaEnvelope } from "react-icons/fa";
 const ContactUsPage = () => {
 	return (
 		<section className="bg-zinc flex flex-col md:flex-row py-6">
-			<div className="hidden md:flex md:flex-col">
+			<div className="hidden md:flex md:flex-col md:mt-8">
 				<ContactBox
 					name="Email Address"
 					content="evergreengrounds73@yahoo.com"

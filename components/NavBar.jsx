@@ -43,13 +43,13 @@ const NavBar = () => {
 						</button>
 					</div>
 
-					<div className="flex flex-1 items-center justify-center md:justify-start md:pt-16">
+					<div className="flex flex-1 items-center justify-center md:items-end md:pt-16">
 						<Link
 							className="flex flex-1 items-center justify-center md:justify-start"
 							href="/"
 						>
 							<Image
-								className="h-12 md:h-28 w-auto"
+								className="h-16 md:h-32 w-auto"
 								src={logo}
 								alt="Evergreen Grounds, Inc."
 								priority={true}
@@ -62,7 +62,7 @@ const NavBar = () => {
 									href="/"
 									className={`${
 										pathname === "/" ? "bg-lime" : ""
-									} text-white text-xl hover:bg-lime-dark hover:text-white rounded-md px-3 py-2`}
+									} text-white text-2xl hover:bg-lime-dark hover:text-white rounded-md px-3 py-2`}
 								>
 									Home
 								</Link>
@@ -70,7 +70,7 @@ const NavBar = () => {
 									href="/services"
 									className={`${
 										pathname === "/services" ? "bg-lime" : ""
-									} text-white text-xl hover:bg-lime-dark hover:text-white rounded-md px-3 py-2`}
+									} text-white text-2xl hover:bg-lime-dark hover:text-white rounded-md px-3 py-2`}
 								>
 									Services
 								</Link>
@@ -78,7 +78,7 @@ const NavBar = () => {
 									href="/contact-us"
 									className={`${
 										pathname === "/contact-us" ? "bg-lime" : ""
-									} text-white text-xl hover:bg-lime-dark hover:text-white rounded-md px-3 py-2`}
+									} text-white text-2xl hover:bg-lime-dark hover:text-white rounded-md px-3 py-2`}
 								>
 									Contact Us
 								</Link>
