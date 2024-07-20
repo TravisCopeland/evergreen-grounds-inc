@@ -17,8 +17,8 @@ const ServicesPage = () => {
 		"Grading",
 		"Mulch",
 		"Pinestraw",
+		"Drainage",
 	];
-	const drainageInfo = ["Irrigation", "Drainage"];
 
 	const router = useRouter();
 
@@ -50,10 +50,9 @@ const ServicesPage = () => {
 					infoArray={maintenanceInfo}
 				/>
 				<ServicesInfoBox
-					label={"Landscape Installation"}
+					label={"Landscape Services"}
 					infoArray={installationInfo}
 				/>
-				<ServicesInfoBox label={"Drainage Systems"} infoArray={drainageInfo} />
 			</div>
 			<button
 				type="button"
