@@ -2,13 +2,13 @@ import { FaDotCircle, FaPhone, FaEnvelope } from "react-icons/fa";
 
 const BasicInfo = () => {
 	const cities = [
-		"Acworth",
-		"Alpharetta",
 		"Cartersville",
+		"Alpharetta",
 		"Dallas",
-		"Kennesaw",
 		"Roswell",
+		"Acworth",
 		"Woodstock",
+		"Kennesaw",
 	];
 
 	return (
@@ -21,7 +21,9 @@ const BasicInfo = () => {
 				Family Owned Business Servicing North Atlanta Since 1983
 			</h2>
 			<div className="bg-white bg-opacity-5 border-transparent rounded-lg py-3 px-4 mt-2">
-				<h3 className="text-md md:text-2xl font-bold pb-2">Areas Served</h3>
+				<h3 className="text-md md:text-2xl font-bold py-2">
+					Serving These Cities & Surrounding Areas
+				</h3>
 				<ul className="grid grid-cols-2 grid-rows-4 gap-0 gap-y-0 text-sm md:text-lg pl-2">
 					{cities.map((city, index) => (
 						<div key={index}>
