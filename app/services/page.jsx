@@ -29,10 +29,7 @@ const ServicesPage = () => {
 			</h1>
 			<hr className="border-solid rounded" />
 			<h2 className="text-white text-lg md:text-2xl text-center m-4 md:m-8">
-				<i>
-					<b>Over 4 Decades</b>
-				</i>{" "}
-				of Horticulture Experience
+				<i>Over 4 Decades </i>of Horticulture Experience
 			</h2>
 			<button
 				type="button"
