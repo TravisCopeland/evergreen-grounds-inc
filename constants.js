@@ -18,10 +18,10 @@ export const maintenanceInfo = [
 ];
 
 export const servicesInfo = [
-	"Sod",
+	"Laying Sod",
 	"Plant Design & Install",
 	"Grading",
-	"Mulch",
-	"Pinestraw",
+	"Spreading Mulch",
+	"Spreading Pinestraw",
 	"Drainage",
 ];
