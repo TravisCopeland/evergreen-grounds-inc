@@ -45,7 +45,7 @@ const RequestQuoteForm = () => {
 
 	return (
 		<section className="md:w-1/2 p-2 md:px-12 md:py-20">
-			<div className="flex flex-col justify-center border-solid border-2 border-lime rounded-lg p-6 md:p-12">
+			<div className="bg-white bg-opacity-5 flex flex-col justify-center border-solid border-2 border-lime rounded-lg p-6 md:p-12">
 				<p className="text-white text-xl md:text-3xl font-semibold text-center pb-4">
 					Request Free Quote
 				</p>
@@ -131,7 +131,7 @@ const RequestQuoteForm = () => {
 						{...register("description")}
 					/>
 					<button
-						className="bg-lime hover:bg-lime-dark p-2 mt-2 mb-2 rounded-lg w-auto"
+						className="bg-lime hover:bg-lime-dark p-2 mt-2 mb-2 rounded-lg w-auto shadow-md shadow-lime-shadow hover:shadow-lime-shadow-dark"
 						type="submit"
 					>
 						{loading ? <Spinner loading={loading} /> : "Request Quote"}
