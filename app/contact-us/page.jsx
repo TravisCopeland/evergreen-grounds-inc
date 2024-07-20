@@ -6,10 +6,18 @@ const ContactUsPage = () => {
 	return (
 		<section className="bg-zinc flex flex-col md:flex-row py-6">
 			<div className="hidden md:flex md:flex-col">
-				<ContactBox name="Email Address" content="evergreengrounds73@yahoo.com">
+				<ContactBox
+					name="Email Address"
+					content="evergreengrounds73@yahoo.com"
+					wrapper="mailto:evergreengrounds73@yahoo.com"
+				>
 					<FaEnvelope size={36} />
 				</ContactBox>
-				<ContactBox name="Call or Text" content="(770) 262-2190">
+				<ContactBox
+					name="Call or Text"
+					content="(770) 262-2190"
+					wrapper="tel:770-262-2190"
+				>
 					<FaPhone size={36} />
 				</ContactBox>
 			</div>
