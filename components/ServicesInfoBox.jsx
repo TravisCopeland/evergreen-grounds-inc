@@ -11,7 +11,7 @@ const ServicesInfoBox = ({ label, infoArray }) => {
 					{infoArray &&
 						infoArray.map((info, index) => (
 							<div key={index}>
-								<li className="flex">
+								<li className="flex py-1">
 									<FaDotCircle className="p-1 m-1" />
 									{info}
 								</li>
