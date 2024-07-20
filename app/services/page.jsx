@@ -1,27 +1,8 @@
-"use client";
-import { useRouter } from "next/navigation";
+import RequestQuoteButton from "@/components/RequestQuoteButton";
 import ServicesInfoBox from "@/components/ServicesInfoBox";
+import { maintenanceInfo, servicesInfo } from "@/constants";
 
 const ServicesPage = () => {
-	const maintenanceInfo = [
-		"Mowing",
-		"Edging & Blowing",
-		"Leaf & Stick Clean Up",
-		"Seasonal Pruning",
-		"Flower Bed Weed Control",
-		"Shrub Pruning",
-	];
-	const installationInfo = [
-		"Sod",
-		"Plant Design & Install",
-		"Grading",
-		"Mulch",
-		"Pinestraw",
-		"Drainage",
-	];
-
-	const router = useRouter();
-
 	return (
 		<section className="bg-zinc p-2 md:p-20">
 			<h1 className="text-white text-xl md:text-3xl font-bold text-center m-4 md:m-8">
@@ -31,13 +12,7 @@ const ServicesPage = () => {
 			<h2 className="text-white text-lg md:text-2xl text-center m-4 md:m-8">
 				<i>Over 4 Decades </i>of Horticulture Experience
 			</h2>
-			<button
-				type="button"
-				onClick={() => router.push("/contact-us")}
-				className="bg-lime hover:bg-lime-dark text-white p-2 rounded-lg w-full my-4 md:my-0"
-			>
-				Request Free Quote
-			</button>
+			<RequestQuoteButton />
 			<h3 className="text-white text-xl md:text-3xl font-bold text-center mt-4 md:mt-8">
 				Services Offered
 			</h3>
@@ -48,16 +23,10 @@ const ServicesPage = () => {
 				/>
 				<ServicesInfoBox
 					label={"Landscape Services"}
-					infoArray={installationInfo}
+					infoArray={servicesInfo}
 				/>
 			</div>
-			<button
-				type="button"
-				onClick={() => router.push("/contact-us")}
-				className="bg-lime hover:bg-lime-dark text-white p-2 rounded-lg w-full my-4 md:my-0"
-			>
-				Request Free Quote
-			</button>
+			<RequestQuoteButton />
 		</section>
 	);
 };

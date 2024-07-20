@@ -1,16 +1,7 @@
 import { FaDotCircle, FaPhone, FaEnvelope } from "react-icons/fa";
+import { cities } from "@/constants";
 
 const BasicInfo = () => {
-	const cities = [
-		"Cartersville",
-		"Alpharetta",
-		"Dallas",
-		"Roswell",
-		"Acworth",
-		"Woodstock",
-		"Kennesaw",
-	];
-
 	return (
 		<section className="flex flex-col justify-center text-white md:w-1/2 px-2 md:px-16">
 			<h1 className="text-center text-lg md:text-4xl font-bold py-3 md:pb-6">
