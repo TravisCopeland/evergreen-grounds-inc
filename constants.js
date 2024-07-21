@@ -21,7 +21,6 @@ export const servicesInfo = [
 	"Laying Sod",
 	"Plant Design & Install",
 	"Grading",
-	"Spreading Mulch",
-	"Spreading Pinestraw",
+	"Color Bed Installation",
 	"Drainage",
 ];
