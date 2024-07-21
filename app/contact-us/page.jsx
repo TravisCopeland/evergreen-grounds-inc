@@ -1,5 +1,6 @@
 import ContactBox from "@/components/ContactBox";
 import RequestQuoteForm from "@/components/RequestQuoteForm";
+import { emailAddress, phoneNumber } from "@/constants";
 import { FaPhone, FaEnvelope } from "react-icons/fa";
 
 const ContactUsPage = () => {
@@ -8,15 +9,15 @@ const ContactUsPage = () => {
 			<div className="hidden md:flex md:flex-col md:mt-8">
 				<ContactBox
 					name="Email Address"
-					content="evergreengrounds73@yahoo.com"
-					wrapper="mailto:evergreengrounds73@yahoo.com"
+					content={emailAddress}
+					wrapper={`mailto:${emailAddress}`}
 				>
 					<FaEnvelope size={36} />
 				</ContactBox>
 				<ContactBox
 					name="Call or Text"
-					content="(770) 262-2190"
-					wrapper="tel:770-262-2190"
+					content={phoneNumber}
+					wrapper={`tel:${phoneNumber}`}
 				>
 					<FaPhone size={36} />
 				</ContactBox>
@@ -24,14 +25,15 @@ const ContactUsPage = () => {
 			<div className="text-white p-2 md:hidden">
 				<div className="flex flex-row">
 					<FaEnvelope className="m-1" />
-					<a
-						href="mailto:evergreengrounds73@yahoo.com"
-						className="pl-2"
-					>{`evergreengrounds73@yahoo.com`}</a>
+					<a href={`mailto:${emailAddress}`} className="pl-2">
+						{emailAddress}
+					</a>
 				</div>
 				<div className="flex flex-row py-3">
 					<FaPhone className="m-1" />
-					<a href="tel:770-262-2190" className="pl-2">{`(770) 262-2190`}</a>
+					<a href={`tel:${phoneNumber}`} className="pl-2">
+						{phoneNumber}
+					</a>
 				</div>
 			</div>
 			<RequestQuoteForm />

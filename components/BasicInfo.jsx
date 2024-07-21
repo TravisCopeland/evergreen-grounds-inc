@@ -1,5 +1,5 @@
 import { FaDotCircle, FaPhone, FaEnvelope } from "react-icons/fa";
-import { cities } from "@/constants";
+import { cities, emailAddress, phoneNumber } from "@/constants";
 
 const BasicInfo = () => {
 	return (
@@ -29,14 +29,15 @@ const BasicInfo = () => {
 			<div className="py-4 md:py-6">
 				<div className="flex flex-row">
 					<FaEnvelope className="m-1" />
-					<a
-						href="mailto:evergreengrounds73@yahoo.com"
-						className="pl-2"
-					>{`evergreengrounds73@yahoo.com`}</a>
+					<a href={`mailto:${emailAddress}`} className="pl-2">
+						{emailAddress}
+					</a>
 				</div>
 				<div className="flex flex-row py-3">
 					<FaPhone className="m-1" />
-					<a href="tel:770-262-2190" className="pl-2">{`(770) 262-2190`}</a>
+					<a href={`tel:${phoneNumber}`} className="pl-2">
+						{phoneNumber}
+					</a>
 				</div>
 			</div>
 		</section>

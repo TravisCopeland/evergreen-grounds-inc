@@ -1,3 +1,7 @@
+export const emailAddress = "evergreengroundsinc@gmail.com";
+
+export const phoneNumber = "770-262-2190";
+
 export const cities = [
 	"Cartersville",
 	"Alpharetta",
