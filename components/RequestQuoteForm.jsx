@@ -70,30 +70,20 @@ const RequestQuoteForm = () => {
 							{errors.name.message}
 						</p>
 					)}
-					<label htmlFor="email">
-						Email<span className="text-red-500"> *</span>
+					<label htmlFor="phone">
+						Phone<span className="text-red-500"> *</span>
 					</label>
 					<input
 						className="text-black border-solid border-2 border-lime rounded-lg p-2 mb-2"
 						type="text"
-						id="email"
-						name="email"
+						id="phone"
+						name="phone"
 						autoComplete="on"
-						{...register("email", {
-							required: "Email is required",
-							validate: {
-								matchPattern: (value) => /^[^@]+@[^@]+\.[^@]+$/.test(value),
-							},
-						})}
+						{...register("phone", { required: "Phone Number is required" })}
 					/>
-					{errors.email?.type === "required" && (
+					{errors.phone && (
 						<p className="text-error-red text-sm font-bold pb-2">
-							{errors.email.message}
-						</p>
-					)}
-					{errors.email?.type === "matchPattern" && (
-						<p className="text-error-red text-sm font-bold pb-2">
-							Please enter a valid email
+							{errors.phone.message}
 						</p>
 					)}
 					<label htmlFor="address">
@@ -112,14 +102,14 @@ const RequestQuoteForm = () => {
 							{errors.address.message}
 						</p>
 					)}
-					<label htmlFor="phone">Phone</label>
+					<label htmlFor="email">Email</label>
 					<input
 						className="text-black border-solid border-2 border-lime rounded-lg p-2 mb-2"
 						type="text"
-						id="phone"
-						name="phone"
+						id="email"
+						name="email"
 						autoComplete="on"
-						{...register("phone")}
+						{...register("email")}
 					/>
 					<textarea
 						className="text-black border-solid border-2 border-lime rounded-lg p-2 my-4 h-auto"
