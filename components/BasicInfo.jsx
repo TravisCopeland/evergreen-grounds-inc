@@ -17,12 +17,10 @@ const BasicInfo = () => {
 				</h3>
 				<ul className="grid grid-cols-2 grid-rows-4 gap-0 gap-y-0 text-sm md:text-lg pl-2">
 					{cities.map((city, index) => (
-						<div key={index}>
-							<li className="flex">
-								<FaDotCircle className="p-1 m-1" />
-								{city}
-							</li>
-						</div>
+						<li key={index} className="flex">
+							<FaDotCircle className="p-1 m-1" />
+							{city}
+						</li>
 					))}
 				</ul>
 			</div>
