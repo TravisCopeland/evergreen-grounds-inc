@@ -75,6 +75,14 @@ const NavBar = () => {
 									Services
 								</Link>
 								<Link
+									href="/gallery"
+									className={`${
+										pathname === "/gallery" ? "bg-lime" : ""
+									} text-white text-2xl hover:bg-lime-dark hover:text-white rounded-md px-3 py-2`}
+								>
+									Gallery
+								</Link>
+								<Link
 									href="/contact-us"
 									className={`${
 										pathname === "/contact-us" ? "bg-lime" : ""
@@ -107,6 +115,14 @@ const NavBar = () => {
 							} text-white block rounded-md px-3 py-2 text-base font-medium`}
 						>
 							Services
+						</Link>
+						<Link
+							href="/gallery"
+							className={`${
+								pathname === "/gallery" ? "bg-lime" : ""
+							} text-white block rounded-md px-3 py-2 text-base font-medium`}
+						>
+							Gallery
 						</Link>
 						<Link
 							href="/contact-us"
