@@ -30,8 +30,8 @@ const PhotoGallery = () => {
 	};
 
 	return (
-		<div className="bg-zinc w-full py-2 md:py-20 md:px-4 sm:min-h-screen">
-			<h1 className="text-white text-center text-lg md:text-3xl font-bold py-3 md:py-6">
+		<div className="bg-zinc w-full p-2 md:py-20 md:px-4 sm:min-h-screen">
+			<h1 className="text-white text-center text-lg md:text-3xl font-bold py-3 md:py-6 bg-white bg-opacity-5 border-transparent rounded-lg mb-3">
 				Photo Gallery
 			</h1>
 			{isFullScreen && (
@@ -172,7 +172,7 @@ const PhotoGallery = () => {
 					/>
 				</div>
 			</div>
-			<div className="py-3 md:py-6">
+			<div className="px-1 py-3 md:py-6">
 				<RequestQuoteButton />
 			</div>
 		</div>
