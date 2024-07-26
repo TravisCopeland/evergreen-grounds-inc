@@ -1,14 +1,14 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import frontyard1l from "@/assets/images/frontyard1l.jpg";
-import frontyard2l from "@/assets/images/frontyard2l.jpg";
-import frontyard3p from "@/assets/images/frontyard3p.jpg";
+import frontyard1l from "@/assets/images/frontyard1l.webp";
+import frontyard2l from "@/assets/images/frontyard2l.webp";
+import frontyard3p from "@/assets/images/frontyard3p.webp";
 import backyard1p from "@/assets/images/backyard1p.jpg";
-import backyard2l from "@/assets/images/backyard2l.jpg";
-import garden1l from "@/assets/images/garden1l.jpg";
-import drainage1p from "@/assets/images/drainage1p.jpg";
-import drainage2p from "@/assets/images/drainage2p.jpg";
+import backyard2l from "@/assets/images/backyard2l.webp";
+import garden1l from "@/assets/images/garden1l.webp";
+import drainage1p from "@/assets/images/drainage1p.webp";
+import drainage2p from "@/assets/images/drainage2p.webp";
 import { MdClose } from "react-icons/md";
 import RequestQuoteButton from "./RequestQuoteButton";
 
@@ -68,7 +68,7 @@ const PhotoGallery = () => {
 					<Image
 						src={frontyard1l}
 						alt={"Front of a house, showing off the front yard"}
-						priority={true}
+						priority
 					/>
 				</div>
 				<div
@@ -83,6 +83,7 @@ const PhotoGallery = () => {
 					<Image
 						src={frontyard2l}
 						alt={"Side of a house, showing off the front yard"}
+						priority
 					/>
 				</div>
 				<div
@@ -94,6 +95,7 @@ const PhotoGallery = () => {
 					<Image
 						src={garden1l}
 						alt={"Garden with planted flowers and plants"}
+						priority
 					/>
 				</div>
 				<div
@@ -108,6 +110,7 @@ const PhotoGallery = () => {
 					<Image
 						src={backyard2l}
 						alt={"Backyard, showing off fresh cut grass"}
+						priority
 					/>
 				</div>
 				<div
@@ -122,6 +125,7 @@ const PhotoGallery = () => {
 					<Image
 						src={drainage1p}
 						alt={"Backyard from top, showing off rocks for water drainage"}
+						priority
 					/>
 				</div>
 				<div
@@ -136,6 +140,7 @@ const PhotoGallery = () => {
 					<Image
 						src={drainage2p}
 						alt={"Backyard from bottom, showing off rocks for water drainage"}
+						priority
 					/>
 				</div>
 				<div
@@ -151,6 +156,7 @@ const PhotoGallery = () => {
 						src={backyard1p}
 						alt={"Backyard, showing off fresh cut grass and patio"}
 						className="aspect-[3/4]"
+						priority
 					/>
 				</div>
 				<div
@@ -162,6 +168,7 @@ const PhotoGallery = () => {
 					<Image
 						src={frontyard3p}
 						alt={"Street view of the front of a house"}
+						priority
 					/>
 				</div>
 			</div>
