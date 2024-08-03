@@ -61,18 +61,13 @@ const PhotoGallery = () => {
 					</button>
 					<div
 						{...swipeHandlers}
-						className="max-h-[calc(85%)] md:max-h-screen z-50"
+						className="flex items-center h-screen max-h-[calc(85%)] md:max-h-screen z-50"
 					>
-						<div
-							onClick={handleClose}
-							className="max-h-[calc(85%)] md:max-h-screen z-50"
-						>
-							<Image
-								src={images[activeIndex].src}
-								alt={images[activeIndex].alt}
-								className="w-auto max-h-[calc(85%)] md:max-h-screen z-50"
-							/>
-						</div>
+						<Image
+							src={images[activeIndex].src}
+							alt={images[activeIndex].alt}
+							className="w-auto max-h-[calc(85%)] md:max-h-screen z-50"
+						/>
 					</div>
 					<button
 						className="hidden md:block absolute text-white top-50 left-0 px-4 py-16 z-50 hover:bg-white hover:bg-opacity-30"
