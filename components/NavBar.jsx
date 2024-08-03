@@ -49,7 +49,7 @@ const NavBar = () => {
 							href="/"
 						>
 							<Image
-								className="h-16 md:h-32 w-auto"
+								className="h-14 md:h-28 w-auto"
 								src={logo}
 								alt="Evergreen Grounds, Inc."
 								priority={true}
