@@ -3,11 +3,12 @@ import Footer from "@/components/Footer";
 import { ToastContainer } from "react-toastify";
 import "@/assets/styles/globals.css";
 import "react-toastify/dist/ReactToastify.css";
+import Head from "next/head";
 
 export const metadata = {
-	title: "Evergreen Grounds, Inc. - Landscape Company",
+	title: "Evergreen Grounds",
 	description:
-		"Family owned landscape design and service company for over 4 decades.",
+		"Family owned landscape design and service company, proudly serving the North Atlanta area for over 4 decades.",
 	keywords: [
 		"landscaping",
 		"landscaping company",
@@ -16,19 +17,16 @@ export const metadata = {
 		"landscape architect",
 		"lawn care",
 		"lawn service",
-		"acworth",
-		"cartersville",
-		"dallas",
-		"kennesaw",
-		"alpharetta",
-		"roswell",
-		"woodstock",
 	],
 };
 
 const RootLayout = ({ children }) => {
 	return (
 		<html lang="en">
+			<Head>
+				<meta name="og:title" property="og:title" content={metadata.title} />
+				<meta name="description" content={metadata.description} />
+			</Head>
 			<body>
 				<NavBar />
 				<main>{children}</main>
