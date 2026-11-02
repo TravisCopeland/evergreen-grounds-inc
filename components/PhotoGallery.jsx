@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { images } from "@/constants";
 import RequestQuoteButton from "./RequestQuoteButton";
@@ -8,26 +8,12 @@ import ImageLightBox from "./ImageLightBox";
 const PhotoGallery = () => {
 	const [isFullScreen, setIsFullScreen] = useState(false);
 	const [activeIndex, setActiveIndex] = useState(0);
+	const openerRef = useRef(null);
 
-	const handleImageClick = (index) => {
+	const handleImageClick = (index, event) => {
 		setIsFullScreen(true);
 		setActiveIndex(index);
-	};
-
-	const handleArrowClick = (direction) => {
-		if (direction === "left") {
-			if (activeIndex === 0) {
-				setActiveIndex(images.length - 1);
-			} else {
-				setActiveIndex((prev) => prev - 1);
-			}
-		} else if (direction === "right") {
-			if (activeIndex === images.length - 1) {
-				setActiveIndex(0);
-			} else {
-				setActiveIndex((prev) => prev + 1);
-			}
-		}
+		openerRef.current = event.currentTarget;
 	};
 
 	return (
@@ -40,25 +26,33 @@ const PhotoGallery = () => {
 					images={images}
 					activeIndex={activeIndex}
 					setActiveIndex={setActiveIndex}
-					handleArrowClick={handleArrowClick}
 					setIsFullScreen={setIsFullScreen}
+					openerRef={openerRef}
 				/>
 			)}
 			<div className="bg-zinc w-full flex flex-row justify-center flex-wrap">
 				{images.map((image, index) => (
-					<Image
+					<button
 						key={index}
-						src={image.src}
-						alt={image.alt}
-						priority={index === 0 || index === 4 ? true : false}
-						placeholder="blur"
-						className={
-							index === 6
-								? "w-1/2 p-1 md:w-1/4 hover:cursor-pointer aspect-[3/4]"
-								: "w-1/2 p-1 md:w-1/4 hover:cursor-pointer"
-						}
-						onClick={() => handleImageClick(index)}
-					/>
+						type="button"
+						className={`w-1/2 p-1 md:w-1/4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-light ${
+							index === 6 ? "aspect-[3/4]" : ""
+						}`}
+						aria-label={`View image ${index + 1}: ${image.alt}`}
+						onClick={(event) => handleImageClick(index, event)}
+					>
+						<Image
+							src={image.src}
+							alt={image.alt}
+							priority={index === 0}
+							placeholder="blur"
+							className={
+								index === 6
+									? "h-full w-full object-cover"
+									: "w-full"
+							}
+						/>
+					</button>
 				))}
 			</div>
 			<div className="px-1 py-3 md:py-6">

@@ -5,10 +5,26 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "@/assets/images/logo-standard-white.png";
 
+const links = [
+	{ href: "/", label: "Home" },
+	{ href: "/services", label: "Services" },
+	{ href: "/gallery", label: "Gallery" },
+	{ href: "/contact-us", label: "Contact Us" },
+];
+
 const NavBar = () => {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
 	const pathname = usePathname();
+
+	const getLinkClassName = (href, mobile = false) => {
+		const activeClass = pathname === href ? "bg-lime" : "";
+		const layoutClass = mobile
+			? "block rounded-md px-3 py-2 text-base font-medium"
+			: "rounded-md px-3 py-2 text-2xl";
+
+		return `${activeClass} ${layoutClass} text-white hover:bg-lime-dark hover:text-white`;
+	};
 
 	return (
 		<nav className="bg-zinc border-zinc w-full">
@@ -21,11 +37,13 @@ const NavBar = () => {
 							id="mobile-dropdown-button"
 							className="relative inline-flex items-center justify-center rounded-md p-2 text-lime hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
 							aria-controls="mobile-menu"
-							aria-expanded="false"
+							aria-expanded={isMobileMenuOpen}
+							aria-label={
+								isMobileMenuOpen ? "Close main menu" : "Open main menu"
+							}
 							onClick={() => setIsMobileMenuOpen((prev) => !prev)}
 						>
 							<span className="absolute -inset-0.5"></span>
-							<span className="sr-only">Open main menu</span>
 							<svg
 								className="block h-6 w-6"
 								fill="none"
@@ -58,38 +76,16 @@ const NavBar = () => {
 						{/* <!-- Desktop Menu - Hidden below md screens --> */}
 						<div className="hidden flex-1 md:block md:justify-center">
 							<div className="flex space-x-2">
-								<Link
-									href="/"
-									className={`${
-										pathname === "/" ? "bg-lime" : ""
-									} text-white text-2xl hover:bg-lime-dark hover:text-white rounded-md px-3 py-2`}
-								>
-									Home
-								</Link>
-								<Link
-									href="/services"
-									className={`${
-										pathname === "/services" ? "bg-lime" : ""
-									} text-white text-2xl hover:bg-lime-dark hover:text-white rounded-md px-3 py-2`}
-								>
-									Services
-								</Link>
-								<Link
-									href="/gallery"
-									className={`${
-										pathname === "/gallery" ? "bg-lime" : ""
-									} text-white text-2xl hover:bg-lime-dark hover:text-white rounded-md px-3 py-2`}
-								>
-									Gallery
-								</Link>
-								<Link
-									href="/contact-us"
-									className={`${
-										pathname === "/contact-us" ? "bg-lime" : ""
-									} text-white text-2xl hover:bg-lime-dark hover:text-white rounded-md px-3 py-2`}
-								>
-									Contact Us
-								</Link>
+								{links.map(({ href, label }) => (
+									<Link
+										key={href}
+										href={href}
+										className={getLinkClassName(href)}
+										aria-current={pathname === href ? "page" : undefined}
+									>
+										{label}
+									</Link>
+								))}
 							</div>
 						</div>
 					</div>
@@ -97,44 +93,25 @@ const NavBar = () => {
 			</div>
 
 			{/* <!-- Mobile menu, show/hide based on menu state. --> */}
-			{isMobileMenuOpen && (
-				<div id="mobile-menu">
-					<div className="space-y-1 px-2 pb-3 pt-2">
+			<div
+				id="mobile-menu"
+				className="md:hidden"
+				hidden={!isMobileMenuOpen}
+			>
+				<div className="space-y-1 px-2 pb-3 pt-2">
+					{links.map(({ href, label }) => (
 						<Link
-							href="/"
-							className={`${
-								pathname === "/" ? "bg-lime" : ""
-							} text-white block rounded-md px-3 py-2 text-base font-medium`}
+							key={href}
+							href={href}
+							className={getLinkClassName(href, true)}
+							aria-current={pathname === href ? "page" : undefined}
+							onClick={() => setIsMobileMenuOpen(false)}
 						>
-							Home
+							{label}
 						</Link>
-						<Link
-							href="/services"
-							className={`${
-								pathname === "/services" ? "bg-lime" : ""
-							} text-white block rounded-md px-3 py-2 text-base font-medium`}
-						>
-							Services
-						</Link>
-						<Link
-							href="/gallery"
-							className={`${
-								pathname === "/gallery" ? "bg-lime" : ""
-							} text-white block rounded-md px-3 py-2 text-base font-medium`}
-						>
-							Gallery
-						</Link>
-						<Link
-							href="/contact-us"
-							className={`${
-								pathname === "/contact-us" ? "bg-lime" : ""
-							} text-white block rounded-md px-3 py-2 text-base font-medium`}
-						>
-							Contact Us
-						</Link>
-					</div>
+					))}
 				</div>
-			)}
+			</div>
 		</nav>
 	);
 };

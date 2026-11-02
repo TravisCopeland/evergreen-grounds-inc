@@ -1,8 +1,15 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import logo from "@/assets/images/logo-standard-white.png";
 
 const Footer = () => {
-	const currentYear = new Date().getFullYear();
+	const [currentYear, setCurrentYear] = useState(null);
+
+	useEffect(() => {
+		setCurrentYear(new Date().getFullYear());
+	}, []);
 
 	return (
 		<footer className="bg-zinc py-4">
