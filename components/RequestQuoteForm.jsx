@@ -1,9 +1,8 @@
 "use client";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import Spinner from "@/components/Spinner";
-import emailjs from "@emailjs/browser";
 
 const RequestQuoteForm = () => {
 	const {
@@ -13,34 +12,39 @@ const RequestQuoteForm = () => {
 		formState: { errors },
 	} = useForm();
 
-	const form = useRef();
-
 	const [loading, setLoading] = useState(false);
 
-	const serviceId = process.env.NEXT_PUBLIC_SERVICE_ID;
-	const templateId = process.env.NEXT_PUBLIC_TEMPLATE_ID;
-	const myPublicKey = process.env.NEXT_PUBLIC_KEY;
-
-	const handleFormSubmit = () => {
+	const handleFormSubmit = async (values) => {
 		setLoading(true);
-		emailjs
-			.sendForm(serviceId, templateId, form.current, {
-				publicKey: myPublicKey,
-			})
-			.then(
-				() => {
-					console.log("SUCCESS");
-					toast.success("Quote Request Sent Successfully");
-					reset();
-				},
-				(error) => {
-					console.log("FAILED...", error.text);
-					toast.error("Something Went Wrong... Try Again");
-				}
-			)
-			.finally(() => {
-				setLoading(false);
+		try {
+			const response = await fetch("/api/quote-requests", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(values),
 			});
+			const result = await response.json().catch(() => ({}));
+
+			if (!response.ok) {
+				throw new Error(
+					result.error || "We couldn't send your request. Please try again."
+				);
+			}
+
+			reset();
+			toast.success(
+				result.confirmationSent
+					? "Request received. A confirmation email is on its way."
+					: "Request received. We couldn't send a confirmation email, but we'll be in touch."
+			);
+		} catch (error) {
+			toast.error(
+				error instanceof Error
+					? error.message
+					: "We couldn't send your request. Please try again."
+			);
+		} finally {
+			setLoading(false);
+		}
 	};
 
 	return (
@@ -50,12 +54,23 @@ const RequestQuoteForm = () => {
 					Request Free Quote
 				</h2>
 				<form
-					ref={form}
 					className="text-white flex flex-col justify-center"
 					onSubmit={handleSubmit(handleFormSubmit)}
 					aria-busy={loading}
 					noValidate
 				>
+					<div
+						className="absolute -left-[10000px]"
+						aria-hidden="true"
+					>
+						<label htmlFor="companyWebsite">Leave this field empty</label>
+						<input
+							id="companyWebsite"
+							tabIndex={-1}
+							autoComplete="off"
+							{...register("companyWebsite")}
+						/>
+					</div>
 					<label htmlFor="name">
 						Name<span className="text-red-500"> *</span>
 					</label>
@@ -125,16 +140,20 @@ const RequestQuoteForm = () => {
 							{errors.address.message}
 						</p>
 					)}
-					<label htmlFor="email">Email</label>
+					<label htmlFor="email">
+						Email<span className="text-red-500"> *</span>
+					</label>
 					<input
 						className="text-black border-solid border-2 border-lime rounded-lg p-2 mb-2"
 						type="email"
 						id="email"
 						name="email"
 						autoComplete="email"
+						required
 						aria-invalid={Boolean(errors.email)}
 						aria-describedby={errors.email ? "email-error" : undefined}
 						{...register("email", {
+							required: "Email is required so we can confirm your request",
 							pattern: {
 								value: /^\S+@\S+\.\S+$/,
 								message: "Enter a valid email address",
