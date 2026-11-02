@@ -1,6 +1,7 @@
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import { ToastContainer } from "react-toastify";
+import { Analytics } from "@vercel/analytics/next";
 import "@/assets/styles/globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import Head from "next/head";
@@ -32,6 +33,7 @@ const RootLayout = ({ children }) => {
 				<main>{children}</main>
 				<Footer />
 				<ToastContainer />
+				<Analytics />
 			</body>
 		</html>
 	);
