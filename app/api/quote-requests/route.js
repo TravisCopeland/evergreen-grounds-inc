@@ -8,6 +8,11 @@ import {
 export const runtime = "nodejs";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const logoAttachment = {
+	path: "https://evergreengrounds.com/email-logo.png",
+	filename: "evergreen-grounds-logo.png",
+	contentId: "evergreen-grounds-logo",
+};
 
 const jsonResponse = (body, status = 200) =>
 	Response.json(body, {
@@ -91,6 +96,7 @@ export async function POST(request) {
 			replyTo: requestDetails.email,
 			subject: `New quote request from ${requestDetails.name}`,
 			html: quoteRequestEmail(requestDetails),
+			attachments: [logoAttachment],
 			text: [
 				"New quote request",
 				"",
@@ -122,6 +128,7 @@ export async function POST(request) {
 			replyTo: emailAddress,
 			subject: "We received your quote request",
 			html: confirmationEmail(requestDetails.name),
+			attachments: [logoAttachment],
 			text: [
 				`Hi ${requestDetails.name},`,
 				"",
