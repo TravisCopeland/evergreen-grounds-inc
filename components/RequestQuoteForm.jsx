@@ -46,13 +46,15 @@ const RequestQuoteForm = () => {
 	return (
 		<section className="md:w-1/2 p-2 md:px-12 md:py-24">
 			<div className="bg-white bg-opacity-5 flex flex-col justify-center border-solid border-2 border-lime rounded-lg p-6 md:p-12 md:mt-4">
-				<p className="text-white text-xl md:text-3xl font-semibold text-center pb-4">
+				<h2 className="text-white text-xl md:text-3xl font-semibold text-center pb-4">
 					Request Free Quote
-				</p>
+				</h2>
 				<form
 					ref={form}
 					className="text-white flex flex-col justify-center"
 					onSubmit={handleSubmit(handleFormSubmit)}
+					aria-busy={loading}
+					noValidate
 				>
 					<label htmlFor="name">
 						Name<span className="text-red-500"> *</span>
@@ -62,11 +64,18 @@ const RequestQuoteForm = () => {
 						type="text"
 						id="name"
 						name="name"
-						autoComplete="on"
+						autoComplete="name"
+						required
+						aria-invalid={Boolean(errors.name)}
+						aria-describedby={errors.name ? "name-error" : undefined}
 						{...register("name", { required: "Name is required" })}
 					/>
 					{errors.name && (
-						<p className="text-error-red text-sm font-bold pb-2">
+						<p
+							id="name-error"
+							className="text-error-red text-sm font-bold pb-2"
+							role="alert"
+						>
 							{errors.name.message}
 						</p>
 					)}
@@ -75,14 +84,21 @@ const RequestQuoteForm = () => {
 					</label>
 					<input
 						className="text-black border-solid border-2 border-lime rounded-lg p-2 mb-2"
-						type="text"
+						type="tel"
 						id="phone"
 						name="phone"
-						autoComplete="on"
+						autoComplete="tel"
+						required
+						aria-invalid={Boolean(errors.phone)}
+						aria-describedby={errors.phone ? "phone-error" : undefined}
 						{...register("phone", { required: "Phone Number is required" })}
 					/>
 					{errors.phone && (
-						<p className="text-error-red text-sm font-bold pb-2">
+						<p
+							id="phone-error"
+							className="text-error-red text-sm font-bold pb-2"
+							role="alert"
+						>
 							{errors.phone.message}
 						</p>
 					)}
@@ -94,26 +110,49 @@ const RequestQuoteForm = () => {
 						type="text"
 						id="address"
 						name="address"
-						autoComplete="on"
+						autoComplete="street-address"
+						required
+						aria-invalid={Boolean(errors.address)}
+						aria-describedby={errors.address ? "address-error" : undefined}
 						{...register("address", { required: "Address is required" })}
 					/>
 					{errors.address && (
-						<p className="text-error-red text-sm font-bold pb-2">
+						<p
+							id="address-error"
+							className="text-error-red text-sm font-bold pb-2"
+							role="alert"
+						>
 							{errors.address.message}
 						</p>
 					)}
 					<label htmlFor="email">Email</label>
 					<input
 						className="text-black border-solid border-2 border-lime rounded-lg p-2 mb-2"
-						type="text"
+						type="email"
 						id="email"
 						name="email"
-						autoComplete="on"
-						{...register("email")}
+						autoComplete="email"
+						aria-invalid={Boolean(errors.email)}
+						aria-describedby={errors.email ? "email-error" : undefined}
+						{...register("email", {
+							pattern: {
+								value: /^\S+@\S+\.\S+$/,
+								message: "Enter a valid email address",
+							},
+						})}
 					/>
+					{errors.email && (
+						<p
+							id="email-error"
+							className="text-error-red text-sm font-bold pb-2"
+							role="alert"
+						>
+							{errors.email.message}
+						</p>
+					)}
+					<label htmlFor="description">How can we help?</label>
 					<textarea
 						className="text-black border-solid border-2 border-lime rounded-lg p-2 my-4 h-auto"
-						type="text"
 						id="description"
 						name="description"
 						placeholder="Enter a brief description of services requested..."
@@ -123,6 +162,7 @@ const RequestQuoteForm = () => {
 					<button
 						className="bg-lime hover:bg-lime-dark p-2 mt-2 mb-2 font-bold rounded-lg w-auto shadow-md shadow-lime-shadow hover:shadow-lime-shadow-dark"
 						type="submit"
+						disabled={loading}
 					>
 						{loading ? <Spinner loading={loading} /> : "Request Quote"}
 					</button>
