@@ -41,9 +41,6 @@ const PhotoGallery = () => {
 					A closer look at the outdoor spaces we care for across North
 					Atlanta.
 				</p>
-				<p className="mt-4 text-sm text-white/50">
-					{images.length} photos
-				</p>
 			</header>
 			<div className="mx-auto grid max-w-7xl grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:gap-5 xl:grid-cols-4">
 				{images.map((image, index) => (
