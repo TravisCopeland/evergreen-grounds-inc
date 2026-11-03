@@ -1,9 +1,11 @@
 import { FaDotCircle } from "react-icons/fa";
+import Image from "next/image";
 import { cities } from "@/constants";
+import backyard from "@/assets/images/backyard2l.webp";
 
 const BasicInfo = () => {
 	return (
-		<section className="flex flex-col justify-center md:w-1/2">
+		<section className="flex flex-col md:w-1/2">
 			<p className="mb-3 text-center text-xs font-semibold uppercase tracking-[0.18em] text-brand-light md:text-left">
 				Family owned · Serving North Atlanta since 1983
 			</p>
@@ -26,6 +28,15 @@ const BasicInfo = () => {
 						</li>
 					))}
 				</ul>
+			</div>
+			<div className="relative mt-6 hidden h-56 overflow-hidden rounded-2xl border border-border shadow-card md:block lg:h-64">
+				<Image
+					src={backyard}
+					alt="A carefully maintained backyard lawn with stone landscaping"
+					fill
+					sizes="(min-width: 1280px) 576px, (min-width: 768px) 50vw"
+					className="object-cover"
+				/>
 			</div>
 		</section>
 	);
