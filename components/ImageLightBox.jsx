@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useSwipeable } from "react-swipeable";
 import { MdClose } from "react-icons/md";
@@ -15,6 +15,7 @@ const ImageLightBox = ({
 	const closeButtonRef = useRef(null);
 	const dialogRef = useRef(null);
 	const imageCount = images.length;
+	const [slideDirection, setSlideDirection] = useState("next");
 
 	const handleClose = useCallback(() => {
 		setIsFullScreen(false);
@@ -22,10 +23,12 @@ const ImageLightBox = ({
 	}, [setActiveIndex, setIsFullScreen]);
 
 	const showPrevious = useCallback(() => {
+		setSlideDirection("previous");
 		setActiveIndex((index) => (index === 0 ? imageCount - 1 : index - 1));
 	}, [imageCount, setActiveIndex]);
 
 	const showNext = useCallback(() => {
+		setSlideDirection("next");
 		setActiveIndex((index) => (index === imageCount - 1 ? 0 : index + 1));
 	}, [imageCount, setActiveIndex]);
 
@@ -118,7 +121,7 @@ const ImageLightBox = ({
 			<button
 				type="button"
 				aria-label="Previous image"
-				className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full border border-white/15 bg-black/50 p-3 text-white transition hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-light sm:left-6"
+				className="gallery-viewer-control absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full border border-white/15 bg-black/50 p-3 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-light sm:left-6"
 				onClick={showPrevious}
 			>
 				<FaArrowLeft size={18} aria-hidden="true" />
@@ -139,14 +142,14 @@ const ImageLightBox = ({
 					priority
 					unoptimized
 					sizes="100vw"
-					className="gallery-image-enter select-none object-contain"
+					className={`gallery-image-enter gallery-image-enter-${slideDirection} select-none object-contain`}
 					fill
 				/>
 			</div>
 			<button
 				type="button"
 				aria-label="Next image"
-				className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full border border-white/15 bg-black/50 p-3 text-white transition hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-light sm:right-6"
+				className="gallery-viewer-control absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full border border-white/15 bg-black/50 p-3 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-light sm:right-6"
 				onClick={showNext}
 			>
 				<FaArrowRight size={18} aria-hidden="true" />

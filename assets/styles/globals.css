@@ -2,24 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
-@keyframes gallery-image-enter {
+@keyframes gallery-image-enter-next {
 	from {
 		opacity: 0;
-		transform: scale(0.985);
+		transform: translateX(3vw);
 	}
 
 	to {
 		opacity: 1;
-		transform: scale(1);
+		transform: translateX(0);
+	}
+}
+
+@keyframes gallery-image-enter-previous {
+	from {
+		opacity: 0;
+		transform: translateX(-3vw);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateX(0);
 	}
 }
 
 .gallery-image-enter {
-	animation: gallery-image-enter 250ms ease-out both;
+	animation-duration: 280ms;
+	animation-timing-function: ease-out;
+	animation-fill-mode: both;
+}
+
+.gallery-image-enter-next {
+	animation-name: gallery-image-enter-next;
+}
+
+.gallery-image-enter-previous {
+	animation-name: gallery-image-enter-previous;
+}
+
+.gallery-viewer-control {
+	-webkit-tap-highlight-color: transparent;
+	transition: background-color 200ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.gallery-viewer-control:hover {
+		background-color: rgb(255 255 255 / 0.2);
+	}
 }
 
 @media (prefers-reduced-motion: reduce) {
 	.gallery-image-enter {
 		animation: none;
+	}
+
+	.gallery-viewer-control {
+		transition: none;
 	}
 }
