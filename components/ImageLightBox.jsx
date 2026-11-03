@@ -115,6 +115,14 @@ const ImageLightBox = ({
 					<MdClose size={24} aria-hidden="true" />
 				</button>
 			</header>
+			<button
+				type="button"
+				aria-label="Previous image"
+				className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full border border-white/15 bg-black/50 p-3 text-white transition hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-light sm:left-6"
+				onClick={showPrevious}
+			>
+				<FaArrowLeft size={18} aria-hidden="true" />
+			</button>
 			<div
 				{...swipeHandlers}
 				className="relative min-h-0 flex-1 px-14 py-5 sm:px-20"
@@ -124,14 +132,6 @@ const ImageLightBox = ({
 					}
 				}}
 			>
-				<button
-					type="button"
-					aria-label="Previous image"
-					className="absolute left-2 z-10 rounded-full border border-white/15 bg-black/50 p-3 text-white transition hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-light sm:left-6"
-					onClick={showPrevious}
-				>
-					<FaArrowLeft size={18} aria-hidden="true" />
-				</button>
 				<Image
 					key={images[activeIndex].src.src}
 					src={images[activeIndex].src}
@@ -139,18 +139,18 @@ const ImageLightBox = ({
 					priority
 					unoptimized
 					sizes="100vw"
-					className="select-none object-contain"
+					className="gallery-image-enter select-none object-contain"
 					fill
 				/>
-				<button
-					type="button"
-					aria-label="Next image"
-					className="absolute right-2 z-10 rounded-full border border-white/15 bg-black/50 p-3 text-white transition hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-light sm:right-6"
-					onClick={showNext}
-				>
-					<FaArrowRight size={18} aria-hidden="true" />
-				</button>
 			</div>
+			<button
+				type="button"
+				aria-label="Next image"
+				className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full border border-white/15 bg-black/50 p-3 text-white transition hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-light sm:right-6"
+				onClick={showNext}
+			>
+				<FaArrowRight size={18} aria-hidden="true" />
+			</button>
 		</div>
 	);
 };
