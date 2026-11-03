@@ -6,7 +6,7 @@ import { FaPhone, FaEnvelope } from "react-icons/fa";
 const ContactUsPage = () => {
 	return (
 		<section className="mx-auto flex min-h-[calc(100vh-9.5rem)] max-w-7xl flex-col gap-6 bg-page px-4 py-8 sm:px-6 md:flex-row md:items-start md:gap-10 md:py-12 lg:px-8">
-			<div className="order-2 grid gap-3 sm:grid-cols-2 md:order-1 md:w-1/2 md:grid-cols-1">
+			<div className="order-2 grid gap-3 sm:grid-cols-2 md:w-1/2 md:grid-cols-1">
 				<ContactBox
 					name="Email Address"
 					content={emailAddress}
@@ -22,7 +22,7 @@ const ContactUsPage = () => {
 					<FaPhone size={36} />
 				</ContactBox>
 			</div>
-			<div className="order-1 md:order-2 md:w-1/2">
+			<div className="order-1 md:w-1/2">
 				<div className="mb-5">
 					<p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-light">
 						We&apos;re here to help
