@@ -88,6 +88,7 @@ const RequestQuoteForm = () => {
 						id="name"
 						name="name"
 						autoComplete="name"
+						maxLength={120}
 						required
 						aria-invalid={Boolean(errors.name)}
 						aria-describedby={errors.name ? "name-error" : undefined}
@@ -111,6 +112,7 @@ const RequestQuoteForm = () => {
 						id="phone"
 						name="phone"
 						autoComplete="tel"
+						maxLength={40}
 						required
 						aria-invalid={Boolean(errors.phone)}
 						aria-describedby={errors.phone ? "phone-error" : undefined}
@@ -134,6 +136,7 @@ const RequestQuoteForm = () => {
 						id="address"
 						name="address"
 						autoComplete="street-address"
+						maxLength={200}
 						required
 						aria-invalid={Boolean(errors.address)}
 						aria-describedby={errors.address ? "address-error" : undefined}
@@ -157,6 +160,7 @@ const RequestQuoteForm = () => {
 						id="email"
 						name="email"
 						autoComplete="email"
+						maxLength={254}
 						required
 						aria-invalid={Boolean(errors.email)}
 						aria-describedby={errors.email ? "email-error" : undefined}
@@ -186,12 +190,14 @@ const RequestQuoteForm = () => {
 						name="description"
 						placeholder="Enter a brief description of services requested..."
 						rows={5}
+						maxLength={2000}
 						{...register("description")}
 					/>
 					<button
 						className="button-primary mt-2 min-h-12 w-full disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
 						type="submit"
 						disabled={loading}
+						aria-disabled={loading}
 					>
 						{loading ? <Spinner loading={loading} /> : "Request Quote"}
 					</button>

@@ -4,6 +4,7 @@ import {
 	confirmationEmail,
 	quoteRequestEmail,
 } from "@/lib/quote-request-emails";
+import { isRateLimited } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 
@@ -14,15 +15,32 @@ const logoAttachment = {
 	contentId: "evergreen-grounds-logo",
 };
 
-const jsonResponse = (body, status = 200) =>
+const jsonResponse = (body, status = 200, headers = {}) =>
 	Response.json(body, {
 		status,
 		headers: {
 			"Cache-Control": "no-store",
+			...headers,
 		},
 	});
 
 export async function POST(request) {
+	if (isRateLimited(request)) {
+		return jsonResponse(
+			{
+				error:
+					"Too many requests. Please wait a few minutes or call us to request a quote.",
+			},
+			429,
+			{ "Retry-After": "900" }
+		);
+	}
+
+	const contentLength = Number(request.headers.get("content-length") || 0);
+	if (contentLength > 10_000) {
+		return jsonResponse({ error: "Please check the form and try again." }, 413);
+	}
+
 	let body;
 
 	try {
@@ -39,7 +57,9 @@ export async function POST(request) {
 
 	if (
 		companyWebsite !== undefined &&
-		(typeof companyWebsite !== "string" || companyWebsite.trim().length > 0)
+		(typeof companyWebsite !== "string" ||
+			companyWebsite.length > 200 ||
+			companyWebsite.trim().length > 0)
 	) {
 		return jsonResponse({ error: "Unable to submit this request." }, 400);
 	}
