@@ -48,7 +48,7 @@ const RequestQuoteForm = () => {
 	};
 
 	return (
-		<section className="w-full md:flex-1">
+		<section className="w-full">
 			<div className="flex flex-col justify-center rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-7 md:p-8 lg:p-10">
 				<div className="mb-6">
 					<p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-light">
@@ -189,7 +189,7 @@ const RequestQuoteForm = () => {
 						{...register("description")}
 					/>
 					<button
-						className="mt-2 inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-brand px-5 py-3 font-semibold text-brand-foreground shadow-lg shadow-brand/20 transition duration-200 hover:-translate-y-0.5 hover:bg-brand-hover disabled:cursor-not-allowed disabled:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-light sm:w-auto"
+						className="button-primary mt-2 min-h-12 w-full disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
 						type="submit"
 						disabled={loading}
 					>

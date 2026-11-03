@@ -1,5 +1,5 @@
-import { FaDotCircle, FaPhone, FaEnvelope } from "react-icons/fa";
-import { cities, emailAddress, phoneNumber } from "@/constants";
+import { FaDotCircle } from "react-icons/fa";
+import { cities } from "@/constants";
 
 const BasicInfo = () => {
 	return (
@@ -26,20 +26,6 @@ const BasicInfo = () => {
 						</li>
 					))}
 				</ul>
-			</div>
-			<div className="mt-5 flex flex-col gap-3 text-sm sm:flex-row sm:flex-wrap sm:gap-5">
-				<div className="flex items-center gap-2 text-content-muted">
-					<FaEnvelope className="shrink-0 text-brand-light" />
-					<a href={`mailto:${emailAddress}`} className="break-all transition-colors hover:text-brand-light sm:break-normal">
-						{emailAddress}
-					</a>
-				</div>
-				<div className="flex items-center gap-2 text-content-muted">
-					<FaPhone className="shrink-0 text-brand-light" />
-					<a href={`tel:${phoneNumber}`} className="transition-colors hover:text-brand-light">
-						{phoneNumber}
-					</a>
-				</div>
 			</div>
 		</section>
 	);

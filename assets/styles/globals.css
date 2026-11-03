@@ -55,6 +55,10 @@ body {
 	background: rgb(var(--color-brand) / 0.25);
 }
 
+.button-primary {
+	@apply inline-flex items-center justify-center rounded-xl bg-brand px-6 py-3.5 text-base font-semibold text-brand-foreground shadow-lg shadow-brand/20 transition duration-200 hover:-translate-y-0.5 hover:bg-brand-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-light sm:text-lg;
+}
+
 .Toastify__toast {
 	border: 1px solid rgb(var(--color-border));
 	border-radius: 0.875rem;

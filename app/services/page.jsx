@@ -1,5 +1,5 @@
-import RequestQuoteButton from "@/components/RequestQuoteButton";
 import ServicesInfoBox from "@/components/ServicesInfoBox";
+import RequestQuoteButton from "@/components/RequestQuoteButton";
 import { maintenanceInfo, servicesInfo } from "@/constants";
 
 const ServicesPage = () => {
@@ -20,9 +20,6 @@ const ServicesPage = () => {
 					More than four decades of horticulture experience
 				</p>
 			</header>
-			<div className="mx-auto mt-8 flex max-w-7xl justify-center md:mt-10">
-				<RequestQuoteButton />
-			</div>
 			<div className="mx-auto mt-10 max-w-7xl md:mt-16">
 				<h2 className="text-center text-2xl font-bold tracking-tight text-content-primary sm:text-3xl">
 					Services offered

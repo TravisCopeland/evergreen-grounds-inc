@@ -68,7 +68,7 @@ const PhotoGallery = () => {
 					</button>
 				))}
 			</div>
-			<div className="mx-auto mt-10 max-w-7xl md:mt-14">
+			<div className="mx-auto mt-10 flex max-w-7xl justify-center md:mt-14">
 				<RequestQuoteButton />
 			</div>
 		</section>
