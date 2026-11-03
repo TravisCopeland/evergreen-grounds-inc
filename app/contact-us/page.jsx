@@ -3,6 +3,21 @@ import RequestQuoteForm from "@/components/RequestQuoteForm";
 import { emailAddress, phoneNumber } from "@/constants";
 import { FaPhone, FaEnvelope } from "react-icons/fa";
 
+export const metadata = {
+	title: "Contact Us",
+	description:
+		"Contact Evergreen Grounds for residential or commercial landscaping in North Atlanta. Call, email, or request a free quote.",
+	alternates: {
+		canonical: "/contact-us",
+	},
+	openGraph: {
+		title: "Contact Evergreen Grounds | North Atlanta Landscaping",
+		description:
+			"Call, email, or request a free landscaping quote from Evergreen Grounds.",
+		url: "/contact-us",
+	},
+};
+
 const ContactUsPage = () => {
 	return (
 		<section className="mx-auto flex min-h-[calc(100vh-9.5rem)] max-w-7xl flex-col gap-6 bg-page px-4 py-8 sm:px-6 md:flex-row md:items-start md:gap-10 md:py-12 lg:px-8">

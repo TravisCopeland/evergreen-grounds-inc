@@ -2,6 +2,21 @@ import ServicesInfoBox from "@/components/ServicesInfoBox";
 import RequestQuoteButton from "@/components/RequestQuoteButton";
 import { maintenanceInfo, servicesInfo } from "@/constants";
 
+export const metadata = {
+	title: "Landscaping Services",
+	description:
+		"Explore lawn maintenance, mowing, pruning, sod installation, planting, grading, drainage, and other residential and commercial landscaping services in North Atlanta.",
+	alternates: {
+		canonical: "/services",
+	},
+	openGraph: {
+		title: "Landscaping Services | Evergreen Grounds",
+		description:
+			"Lawn maintenance, landscape installation, planting, grading, and drainage services in North Atlanta.",
+		url: "/services",
+	},
+};
+
 const ServicesPage = () => {
 	return (
 		<section className="min-h-screen bg-page px-4 py-10 sm:px-6 md:py-16 lg:px-8">

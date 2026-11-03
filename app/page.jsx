@@ -3,6 +3,23 @@ import RequestQuoteForm from "@/components/RequestQuoteForm";
 import { emailAddress, phoneNumber } from "@/constants";
 import { FaEnvelope, FaPhone } from "react-icons/fa";
 
+export const metadata = {
+	title: {
+		absolute: "Landscaping in North Atlanta | Evergreen Grounds",
+	},
+	description:
+		"Family-owned residential and commercial landscaping serving North Atlanta since 1983. Request a free quote for lawn care, landscape installation, and more.",
+	alternates: {
+		canonical: "/",
+	},
+	openGraph: {
+		title: "Landscaping in North Atlanta | Evergreen Grounds",
+		description:
+			"Family-owned residential and commercial landscaping serving North Atlanta since 1983.",
+		url: "/",
+	},
+};
+
 const HomePage = () => {
 	return (
 		<div className="mx-auto flex min-h-[calc(100vh-9.5rem)] max-w-7xl flex-col gap-5 bg-page px-4 py-8 sm:px-6 md:flex-row md:items-start md:gap-10 md:py-12 lg:px-8">
