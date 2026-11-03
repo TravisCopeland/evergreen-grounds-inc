@@ -10,41 +10,43 @@ import drainage2p from "@/assets/images/drainage2p.webp";
 export const images = [
 	{
 		src: frontyard1l,
-		alt: "Front of a house, showing off the front yard",
+		alt: "Residential front lawn with a landscaped garden bed",
 	},
 	{
 		src: frontyard2l,
-		alt: "Side of a house, showing off the front yard",
+		alt: "Landscaped lawn and shrubs along the front of a home",
 	},
 	{
 		src: garden1l,
-		alt: "Garden with planted flowers and plants",
+		alt: "Freshly mulched garden bed with colorful flowers and plants",
 	},
 	{
 		src: backyard2l,
-		alt: "Backyard, showing off fresh cut grass",
+		alt: "Maintained backyard lawn with stone landscaping",
 	},
 	{
 		src: drainage1p,
-		alt: "Backyard from top, showing off rocks for water drainage",
+		alt: "Rock drainage channel along a residential backyard fence",
 	},
 	{
 		src: drainage2p,
-		alt: "Backyard from bottom, showing off rocks for water drainage",
+		alt: "Stone drainage channel beside a lawn and brick wall",
 	},
 	{
 		src: backyard1p,
-		alt: "Backyard, showing off fresh cut grass and patio",
+		alt: "Backyard lawn and patio bordered by landscaping",
 	},
 	{
 		src: frontyard3p,
-		alt: "Street view of the front of a house",
+		alt: "Residential front yard with lawn and foundation plantings",
 	},
 ];
 
 export const emailAddress = "evergreengroundsinc@gmail.com";
 
 export const phoneNumber = "770-262-2190";
+
+export const siteUrl = "https://evergreengrounds.com";
 
 export const cities = [
 	"Cartersville",

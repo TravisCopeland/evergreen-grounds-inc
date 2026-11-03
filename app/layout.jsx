@@ -5,20 +5,24 @@ import { Analytics } from "@vercel/analytics/next";
 import "@/assets/styles/globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import Script from "next/script";
+import { siteUrl } from "@/constants";
 
 export const metadata = {
-	title: "Evergreen Grounds",
+	metadataBase: new URL(siteUrl),
+	title: {
+		default: "Landscaping in North Atlanta | Evergreen Grounds",
+		template: "%s | Evergreen Grounds",
+	},
 	description:
-		"Family owned landscape design and service company, proudly serving the North Atlanta area for over 4 decades.",
-	keywords: [
-		"landscaping",
-		"landscaping company",
-		"landscapers",
-		"landscape design",
-		"landscape architect",
-		"lawn care",
-		"lawn service",
-	],
+		"Family-owned landscaping company serving North Atlanta since 1983. Explore lawn maintenance, landscape design, installation, drainage, and more.",
+	openGraph: {
+		type: "website",
+		locale: "en_US",
+		siteName: "Evergreen Grounds, Inc.",
+	},
+	twitter: {
+		card: "summary",
+	},
 };
 
 const RootLayout = ({ children }) => {
@@ -38,8 +42,6 @@ const RootLayout = ({ children }) => {
 		matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }`}
 				</Script>
-				<meta name="og:title" property="og:title" content={metadata.title} />
-				<meta name="description" content={metadata.description} />
 			</head>
 			<body>
 				<NavBar />
