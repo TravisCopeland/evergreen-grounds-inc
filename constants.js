@@ -8,10 +8,22 @@ import drainage1p from "@/assets/images/drainage1p.webp";
 import drainage2p from "@/assets/images/drainage2p.webp";
 
 export const images = [
-	{ src: frontyard1l, alt: "Front of a house, showing off the front yard" },
-	{ src: frontyard2l, alt: "Side of a house, showing off the front yard" },
-	{ src: garden1l, alt: "Garden with planted flowers and plants" },
-	{ src: backyard2l, alt: "Backyard, showing off fresh cut grass" },
+	{
+		src: frontyard1l,
+		alt: "Front of a house, showing off the front yard",
+	},
+	{
+		src: frontyard2l,
+		alt: "Side of a house, showing off the front yard",
+	},
+	{
+		src: garden1l,
+		alt: "Garden with planted flowers and plants",
+	},
+	{
+		src: backyard2l,
+		alt: "Backyard, showing off fresh cut grass",
+	},
 	{
 		src: drainage1p,
 		alt: "Backyard from top, showing off rocks for water drainage",
@@ -20,8 +32,14 @@ export const images = [
 		src: drainage2p,
 		alt: "Backyard from bottom, showing off rocks for water drainage",
 	},
-	{ src: backyard1p, alt: "Backyard, showing off fresh cut grass and patio" },
-	{ src: frontyard3p, alt: "Street view of the front of a house" },
+	{
+		src: backyard1p,
+		alt: "Backyard, showing off fresh cut grass and patio",
+	},
+	{
+		src: frontyard3p,
+		alt: "Street view of the front of a house",
+	},
 ];
 
 export const emailAddress = "evergreengroundsinc@gmail.com";

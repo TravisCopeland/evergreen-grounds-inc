@@ -89,52 +89,68 @@ const ImageLightBox = ({
 			ref={dialogRef}
 			role="dialog"
 			aria-modal="true"
-			aria-label="Photo gallery image viewer"
+			aria-label="Photo viewer"
 			onKeyDown={handleDialogKeyDown}
-			className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+			onClick={(event) => {
+				if (event.target === event.currentTarget) {
+					handleClose();
+				}
+			}}
+			className="fixed inset-0 z-50 flex flex-col bg-black/95 text-white backdrop-blur-md outline-none"
 		>
-			<p
-				className="absolute text-white top-0 left-0 p-1 m-2 z-50"
-				aria-live="polite"
-			>
-				{`${activeIndex + 1} / ${images.length}`}
-			</p>
-			<button
-				ref={closeButtonRef}
-				type="button"
-				onClick={handleClose}
-				aria-label="Close image viewer"
-				className="absolute text-white top-0 right-0 p-2 m-2 z-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-lime-light"
-			>
-				<MdClose size={30} />
-			</button>
+			<header className="flex items-center justify-between border-b border-white/10 px-4 py-3 sm:px-6">
+				<p
+					className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-sm font-medium text-white/85"
+					aria-live="polite"
+				>
+					{`${activeIndex + 1} / ${images.length}`}
+				</p>
+				<button
+					ref={closeButtonRef}
+					type="button"
+					onClick={handleClose}
+					aria-label="Close image viewer"
+					className="rounded-full border border-white/15 bg-white/10 p-2 text-white transition hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-light"
+				>
+					<MdClose size={24} aria-hidden="true" />
+				</button>
+			</header>
 			<div
 				{...swipeHandlers}
-				className="flex items-center h-screen max-h-[calc(85%)] md:max-h-screen z-50"
+				className="relative min-h-0 flex-1 px-14 py-5 sm:px-20"
+				onClick={(event) => {
+					if (event.target === event.currentTarget) {
+						handleClose();
+					}
+				}}
 			>
+				<button
+					type="button"
+					aria-label="Previous image"
+					className="absolute left-2 z-10 rounded-full border border-white/15 bg-black/50 p-3 text-white transition hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-light sm:left-6"
+					onClick={showPrevious}
+				>
+					<FaArrowLeft size={18} aria-hidden="true" />
+				</button>
 				<Image
+					key={images[activeIndex].src.src}
 					src={images[activeIndex].src}
 					alt={images[activeIndex].alt}
-					className="w-auto max-h-[calc(85%)] md:max-h-screen z-50"
+					priority
+					unoptimized
+					sizes="100vw"
+					className="select-none object-contain"
+					fill
 				/>
+				<button
+					type="button"
+					aria-label="Next image"
+					className="absolute right-2 z-10 rounded-full border border-white/15 bg-black/50 p-3 text-white transition hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-light sm:right-6"
+					onClick={showNext}
+				>
+					<FaArrowRight size={18} aria-hidden="true" />
+				</button>
 			</div>
-			<button
-				type="button"
-				aria-label="Previous image"
-				className="hidden md:block absolute text-white top-50 left-0 px-4 py-16 z-50 hover:bg-white hover:bg-opacity-30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-lime-light"
-				onClick={showPrevious}
-			>
-				<FaArrowLeft size={20} aria-hidden="true" />
-			</button>
-			<button
-				type="button"
-				aria-label="Next image"
-				className="hidden md:block absolute text-white top-50 right-0 px-4 py-16 z-50 hover:bg-white hover:bg-opacity-30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-lime-light"
-				onClick={showNext}
-			>
-				<FaArrowRight size={20} aria-hidden="true" />
-			</button>
-			<div className="opacity-75 fixed inset-0 z-40 bg-black"></div>
 		</div>
 	);
 };

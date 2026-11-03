@@ -17,10 +17,10 @@ const PhotoGallery = () => {
 	};
 
 	return (
-		<div className="bg-zinc w-full p-2 md:py-20 md:px-4 sm:min-h-screen">
-			<h1 className="text-white text-center text-lg md:text-3xl font-bold py-3 md:py-6 bg-white bg-opacity-5 border-transparent rounded-lg mb-3">
-				Photo Gallery
-			</h1>
+		<section
+			aria-labelledby="gallery-title"
+			className="min-h-screen w-full bg-zinc px-4 py-10 sm:px-6 md:py-16 lg:px-8"
+		>
 			{isFullScreen && (
 				<ImageLightBox
 					images={images}
@@ -30,15 +30,33 @@ const PhotoGallery = () => {
 					openerRef={openerRef}
 				/>
 			)}
-			<div className="bg-zinc w-full flex flex-row justify-center flex-wrap">
+			<header className="mx-auto mb-8 max-w-7xl text-center md:mb-12">
+				<h1
+					id="gallery-title"
+					className="text-3xl font-bold text-white md:text-5xl"
+				>
+					Our Work
+				</h1>
+				<p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/75 md:text-lg">
+					A closer look at the outdoor spaces we care for across North
+					Atlanta.
+				</p>
+				<p className="mt-4 text-sm text-white/50">
+					{images.length} photos
+				</p>
+			</header>
+			<div className="mx-auto grid max-w-7xl grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:gap-5 xl:grid-cols-4">
 				{images.map((image, index) => (
 					<button
-						key={index}
+						key={image.src.src}
 						type="button"
-						className={`w-1/2 p-1 md:w-1/4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-light ${
-							index === 6 ? "aspect-[3/4]" : ""
+						className={`group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 text-left shadow-lg shadow-black/20 transition duration-300 hover:-translate-y-1 hover:border-lime-light/70 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-lime-light ${
+							image.src.height > image.src.width
+								? "aspect-[3/4]"
+								: "aspect-[4/3]"
 						}`}
-						aria-label={`View image ${index + 1}: ${image.alt}`}
+						aria-label={`View photo ${index + 1}`}
+						aria-haspopup="dialog"
 						onClick={(event) => handleImageClick(index, event)}
 					>
 						<Image
@@ -46,19 +64,17 @@ const PhotoGallery = () => {
 							alt={image.alt}
 							priority={index === 0}
 							placeholder="blur"
-							className={
-								index === 6
-									? "h-full w-full object-cover"
-									: "w-full"
-							}
+							sizes="(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 50vw"
+							className="object-cover transition duration-500 group-hover:scale-105"
+							fill
 						/>
 					</button>
 				))}
 			</div>
-			<div className="px-1 py-3 md:py-6">
+			<div className="mx-auto mt-10 max-w-7xl md:mt-14">
 				<RequestQuoteButton />
 			</div>
-		</div>
+		</section>
 	);
 };
 
