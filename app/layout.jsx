@@ -4,7 +4,7 @@ import { ToastContainer } from "react-toastify";
 import { Analytics } from "@vercel/analytics/next";
 import "@/assets/styles/globals.css";
 import "react-toastify/dist/ReactToastify.css";
-import Head from "next/head";
+import Script from "next/script";
 
 export const metadata = {
 	title: "Evergreen Grounds",
@@ -23,11 +23,24 @@ export const metadata = {
 
 const RootLayout = ({ children }) => {
 	return (
-		<html lang="en">
-			<Head>
+		<html lang="en" suppressHydrationWarning>
+			<head>
+				<Script id="theme-init" strategy="beforeInteractive">
+					{`try {
+	const savedTheme = localStorage.getItem("evergreen-theme");
+	const systemTheme = matchMedia("(prefers-color-scheme: dark)").matches
+		? "dark"
+		: "light";
+	document.documentElement.dataset.theme =
+		savedTheme === "light" || savedTheme === "dark" ? savedTheme : systemTheme;
+} catch {
+	document.documentElement.dataset.theme =
+		matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}`}
+				</Script>
 				<meta name="og:title" property="og:title" content={metadata.title} />
 				<meta name="description" content={metadata.description} />
-			</Head>
+			</head>
 			<body>
 				<NavBar />
 				<main>{children}</main>
