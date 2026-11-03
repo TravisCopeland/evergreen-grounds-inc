@@ -3,27 +3,26 @@ import { FaExclamationTriangle } from "react-icons/fa";
 
 const NotFoundPage = () => {
 	return (
-		<section className="bg-zinc min-h-screen flex-grow">
-			<div className="container m-auto max-w-2xl py-24">
-				<div className="bg-white px-6 py-24 mb-4 shadow-md rounded-md border m-4 md:m-0">
+		<section className="flex min-h-[70vh] items-center bg-page px-4 py-12">
+			<div className="container m-auto max-w-2xl">
+				<div className="m-4 rounded-2xl border border-border bg-surface px-6 py-16 text-content-primary shadow-card sm:px-12 md:m-0">
 					<div className="flex justify-center">
-						<FaExclamationTriangle className="fas fa-exclamation-triangle fa-5x text-8xl text-yellow-400"></FaExclamationTriangle>
+						<FaExclamationTriangle className="text-6xl text-brand-light" />
 					</div>
 					<div className="text-center">
-						<h1 className="text-3xl font-bold mt-4 mb-2">Page Not Found</h1>
-						<p className="text-gray-500 text-xl mb-10">
+						<h1 className="mb-2 mt-4 text-3xl font-bold">Page not found</h1>
+						<p className="mb-8 text-base text-content-muted sm:text-lg">
 							The page you are looking for does not exist.
 						</p>
 						<Link
 							href="/"
-							className="bg-lime hover:bg-lime-dark text-white font-bold py-4 px-6 rounded"
+							className="inline-flex min-h-12 items-center rounded-xl bg-brand px-6 py-3 font-semibold text-brand-foreground transition-colors hover:bg-brand-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-light"
 						>
 							Go Home
 						</Link>
 					</div>
 				</div>
 			</div>
-			<div className="flex-grow"></div>
 		</section>
 	);
 };

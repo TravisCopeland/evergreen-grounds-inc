@@ -1,15 +1,14 @@
 const ContactBox = ({ children, name, content, wrapper }) => {
 	return (
-		<a href={wrapper}>
-			<div className="text-white md:flex justify-center p-16 bg-white bg-opacity-5 border-transparent rounded-lg mt-20 ml-16">
-				<div className="flex flex-col gap-4">
-					<div className="flex justify-center">{children}</div>
-					<h3 className="flex justify-center font-bold text-lime-light">
-						{name}
-					</h3>
-					<p className="flex justify-center">{content}</p>
-				</div>
+		<a
+			href={wrapper}
+			className="group flex min-h-56 flex-col items-center justify-center gap-4 rounded-2xl border border-border bg-surface p-7 text-center shadow-card transition duration-200 hover:-translate-y-1 hover:border-brand/50 hover:shadow-card focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-light"
+		>
+			<div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand/10 text-brand-light transition-colors group-hover:bg-brand group-hover:text-brand-foreground">
+				{children}
 			</div>
+			<h3 className="font-semibold text-content-primary">{name}</h3>
+			<p className="break-all text-sm text-content-muted">{content}</p>
 		</a>
 	);
 };

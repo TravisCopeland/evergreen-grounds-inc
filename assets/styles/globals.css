@@ -2,6 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+	color-scheme: dark;
+	--color-page: 17 24 20;
+	--color-surface: 24 35 28;
+	--color-surface-raised: 31 46 36;
+	--color-border: 55 73 60;
+	--color-content-primary: 245 247 242;
+	--color-content-muted: 185 196 186;
+	--color-brand: 36 132 66;
+	--color-brand-hover: 28 109 52;
+	--color-brand-light: 122 207 117;
+	--color-brand-deep: 12 39 22;
+	--color-brand-foreground: 255 255 255;
+	--color-danger: 220 65 65;
+	--color-field: 20 30 25;
+	--color-field-content: 245 247 242;
+	--shadow-card: 0 16px 40px rgb(0 0 0 / 0.22);
+}
+
+:root[data-theme="light"] {
+	color-scheme: light;
+	--color-page: 246 248 244;
+	--color-surface: 255 255 255;
+	--color-surface-raised: 239 244 237;
+	--color-border: 215 225 214;
+	--color-content-primary: 31 41 33;
+	--color-content-muted: 83 99 84;
+	--color-brand: 26 111 53;
+	--color-brand-hover: 20 87 41;
+	--color-brand-light: 23 104 48;
+	--color-brand-foreground: 255 255 255;
+	--color-danger: 180 38 38;
+	--color-field: 255 255 255;
+	--color-field-content: 31 41 33;
+	--shadow-card: 0 16px 40px rgb(11 31 16 / 0.08);
+}
+
+html {
+	background: rgb(var(--color-page));
+}
+
+body {
+	background: rgb(var(--color-page));
+	color: rgb(var(--color-content-primary));
+	transition:
+		background-color 180ms ease,
+		color 180ms ease;
+}
+
+::selection {
+	background: rgb(var(--color-brand) / 0.25);
+}
+
+.button-primary {
+	@apply inline-flex items-center justify-center rounded-xl bg-brand px-6 py-3.5 text-base font-semibold text-brand-foreground shadow-lg shadow-brand/20 transition duration-200 hover:-translate-y-0.5 hover:bg-brand-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-light sm:text-lg;
+}
+
+.Toastify__toast {
+	border: 1px solid rgb(var(--color-border));
+	border-radius: 0.875rem;
+	background: rgb(var(--color-surface-raised));
+	color: rgb(var(--color-content-primary));
+	box-shadow: 0 16px 40px rgb(0 0 0 / 0.16);
+}
+
+.Toastify__progress-bar {
+	background: rgb(var(--color-brand));
+}
+
 @keyframes gallery-image-enter-next {
 	from {
 		opacity: 0;
@@ -52,6 +121,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+	body {
+		transition: none;
+	}
+
 	.gallery-image-enter {
 		animation: none;
 	}

@@ -19,7 +19,7 @@ const PhotoGallery = () => {
 	return (
 		<section
 			aria-labelledby="gallery-title"
-			className="min-h-screen w-full bg-zinc px-4 py-10 sm:px-6 md:py-16 lg:px-8"
+			className="min-h-screen w-full bg-page px-4 py-10 sm:px-6 md:py-16 lg:px-8"
 		>
 			{isFullScreen && (
 				<ImageLightBox
@@ -33,11 +33,11 @@ const PhotoGallery = () => {
 			<header className="mx-auto mb-8 max-w-7xl text-center md:mb-12">
 				<h1
 					id="gallery-title"
-					className="text-3xl font-bold text-white md:text-5xl"
+					className="text-3xl font-bold tracking-tight text-content-primary md:text-5xl"
 				>
 					Our Work
 				</h1>
-				<p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/75 md:text-lg">
+				<p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-content-muted md:text-lg">
 					A closer look at the outdoor spaces we care for across North
 					Atlanta.
 				</p>
@@ -47,7 +47,7 @@ const PhotoGallery = () => {
 					<button
 						key={image.src.src}
 						type="button"
-						className={`group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 text-left shadow-lg shadow-black/20 transition duration-300 hover:-translate-y-1 hover:border-lime-light/70 hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-lime-light ${
+						className={`group relative overflow-hidden rounded-2xl border border-border bg-surface text-left shadow-card transition duration-300 hover:-translate-y-1 hover:border-brand-light/70 hover:shadow-card focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-light ${
 							image.src.height > image.src.width
 								? "aspect-[3/4]"
 								: "aspect-[4/3]"
@@ -68,7 +68,7 @@ const PhotoGallery = () => {
 					</button>
 				))}
 			</div>
-			<div className="mx-auto mt-10 max-w-7xl md:mt-14">
+			<div className="mx-auto mt-10 flex max-w-7xl justify-center md:mt-14">
 				<RequestQuoteButton />
 			</div>
 		</section>

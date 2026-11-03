@@ -12,18 +12,17 @@ const Footer = () => {
 	}, []);
 
 	return (
-		<footer className="bg-zinc py-4">
-			<div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-4">
-				<div className="mb-4 md:mb-0">
+		<footer className="border-t border-white/10 bg-brand-deep py-8 text-white">
+			<div className="container mx-auto flex flex-col items-center justify-between gap-5 px-4 sm:flex-row">
+				<div>
 					<Image
 						src={logo}
-						alt="Logo"
-						priority={true}
-						className="h-10 lg:h-18 w-auto"
+						alt="Evergreen Grounds, Inc."
+						className="h-10 w-auto"
 					/>
 				</div>
-				<div>
-					<p className="text-sm text-white mt-2 md:mt-0">
+				<div className="text-center sm:text-right">
+					<p className="text-sm text-white/70">
 						&copy; {currentYear} Evergreen Grounds, Inc. All rights reserved.
 					</p>
 				</div>
