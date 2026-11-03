@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "@/assets/images/logo-standard-white.png";
+import ThemeToggle from "./ThemeToggle";
 
 const links = [
 	{ href: "/", label: "Home" },
@@ -62,9 +63,9 @@ const NavBar = () => {
 						</button>
 					</div>
 
-					<div className="flex flex-1 items-center justify-center">
+					<div className="flex flex-1 items-center justify-center px-12 md:justify-between md:px-0">
 						<Link
-							className="flex items-center justify-center md:mr-auto"
+							className="flex items-center justify-center"
 							href="/"
 						>
 							<Image
@@ -88,6 +89,9 @@ const NavBar = () => {
 								))}
 							</div>
 						</div>
+					</div>
+					<div className="absolute inset-y-0 right-0 flex items-center md:static md:ml-6">
+						<ThemeToggle />
 					</div>
 				</div>
 			</div>
