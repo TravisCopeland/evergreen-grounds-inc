@@ -16,9 +16,6 @@ const ServicesPage = () => {
 					We partner with homeowners and businesses to create and maintain
 					outdoor spaces they love.
 				</p>
-				<p className="mt-3 text-sm font-medium text-brand-light">
-					More than four decades of horticulture experience
-				</p>
 			</header>
 			<div className="mx-auto mt-10 max-w-7xl md:mt-16">
 				<h2 className="text-center text-2xl font-bold tracking-tight text-content-primary sm:text-3xl">
