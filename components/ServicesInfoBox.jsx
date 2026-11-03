@@ -2,16 +2,16 @@ import { FaDotCircle } from "react-icons/fa";
 
 const ServicesInfoBox = ({ label, infoArray }) => {
 	return (
-		<div className="text-white flex md:mx-4 justify-center p-8 bg-white bg-opacity-5 border-transparent rounded-lg my-2 md:my-14 md:w-1/2">
+		<div className="my-3 rounded-2xl border border-border bg-surface p-5 shadow-card transition-shadow sm:p-7 md:w-1/2 md:p-8">
 			<div className="flex flex-col gap-4">
-				<h3 className="flex justify-center text-lg md:text-3xl font-bold text-lime-light md:mb-2">
+				<h3 className="text-lg font-semibold text-content-primary sm:text-xl">
 					{label}
 				</h3>
-				<ul className="text-sm md:text-xl">
+				<ul className="grid gap-3 text-sm text-content-muted sm:grid-cols-2 sm:text-base">
 					{infoArray &&
 						infoArray.map((info, index) => (
-							<li key={index} className="flex py-1">
-								<FaDotCircle className="p-1 m-1" />
+							<li key={index} className="flex items-center gap-2">
+								<FaDotCircle className="shrink-0 text-[0.55rem] text-brand-light" />
 								{info}
 							</li>
 						))}

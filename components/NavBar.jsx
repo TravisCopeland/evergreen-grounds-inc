@@ -18,24 +18,26 @@ const NavBar = () => {
 	const pathname = usePathname();
 
 	const getLinkClassName = (href, mobile = false) => {
-		const activeClass = pathname === href ? "bg-lime" : "";
+		const activeClass =
+			pathname === href
+				? "bg-white/10 text-white"
+				: "text-white/75";
 		const layoutClass = mobile
-			? "block rounded-md px-3 py-2 text-base font-medium"
-			: "rounded-md px-3 py-2 text-2xl";
+			? "block rounded-xl px-4 py-3 text-base font-medium"
+			: "rounded-full px-4 py-2 text-sm font-medium";
 
-		return `${activeClass} ${layoutClass} text-white hover:bg-lime-dark hover:text-white`;
+		return `${activeClass} ${layoutClass} transition-colors hover:bg-white/10 hover:text-white`;
 	};
 
 	return (
-		<nav className="bg-zinc border-zinc w-full">
-			<div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-				<div className="relative flex h-20 items-center justify-between">
+		<nav className="w-full border-b border-white/10 bg-brand-deep text-white">
+			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+				<div className="relative flex h-[4.5rem] items-center justify-between md:h-24">
 					<div className="absolute inset-y-0 left-0 flex items-center md:hidden">
-						{/* <!-- Mobile menu button--> */}
 						<button
 							type="button"
 							id="mobile-dropdown-button"
-							className="relative inline-flex items-center justify-center rounded-md p-2 text-lime hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+							className="inline-flex h-11 w-11 items-center justify-center rounded-xl text-white/85 transition hover:bg-white/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-light"
 							aria-controls="mobile-menu"
 							aria-expanded={isMobileMenuOpen}
 							aria-label={
@@ -43,9 +45,8 @@ const NavBar = () => {
 							}
 							onClick={() => setIsMobileMenuOpen((prev) => !prev)}
 						>
-							<span className="absolute -inset-0.5"></span>
 							<svg
-								className="block h-6 w-6"
+								className="h-6 w-6"
 								fill="none"
 								viewBox="0 0 24 24"
 								strokeWidth="1.5"
@@ -61,21 +62,20 @@ const NavBar = () => {
 						</button>
 					</div>
 
-					<div className="flex flex-1 items-center justify-center md:items-end md:pt-16">
+					<div className="flex flex-1 items-center justify-center">
 						<Link
-							className="flex flex-1 items-center justify-center md:justify-start"
+							className="flex items-center justify-center md:mr-auto"
 							href="/"
 						>
 							<Image
-								className="h-14 md:h-28 w-auto"
+								className="h-12 w-auto md:h-16"
 								src={logo}
 								alt="Evergreen Grounds, Inc."
-								priority={true}
+								priority
 							/>
 						</Link>
-						{/* <!-- Desktop Menu - Hidden below md screens --> */}
-						<div className="hidden flex-1 md:block md:justify-center">
-							<div className="flex space-x-2">
+						<div className="hidden md:block">
+							<div className="flex items-center gap-1">
 								{links.map(({ href, label }) => (
 									<Link
 										key={href}
@@ -92,13 +92,12 @@ const NavBar = () => {
 				</div>
 			</div>
 
-			{/* <!-- Mobile menu, show/hide based on menu state. --> */}
 			<div
 				id="mobile-menu"
-				className="md:hidden"
+				className="border-t border-white/10 bg-brand-deep px-4 pb-4 pt-3 md:hidden"
 				hidden={!isMobileMenuOpen}
 			>
-				<div className="space-y-1 px-2 pb-3 pt-2">
+				<div className="mx-auto max-w-7xl space-y-1">
 					{links.map(({ href, label }) => (
 						<Link
 							key={href}

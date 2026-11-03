@@ -4,29 +4,43 @@ import { maintenanceInfo, servicesInfo } from "@/constants";
 
 const ServicesPage = () => {
 	return (
-		<section className="bg-zinc p-2 md:p-20">
-			<h1 className="text-white text-lg md:text-3xl font-bold text-center m-4 md:m-8">
-				We are dedicated to working with our clients to achieve their goals.
-			</h1>
-			<hr className="border-solid rounded" />
-			<h2 className="text-white text-lg md:text-3xl text-center m-4 md:m-8">
-				<i>** Over 4 Decades of Horticulture Experience **</i>
-			</h2>
-			<RequestQuoteButton />
-			<h3 className="text-white text-xl md:text-3xl font-bold text-center mt-4 md:mt-8">
-				Services Offered
-			</h3>
-			<div className="flex flex-col md:flex-row md:justify-between">
+		<section className="min-h-screen bg-page px-4 py-10 sm:px-6 md:py-16 lg:px-8">
+			<header className="mx-auto max-w-3xl text-center">
+				<p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-light">
+					Thoughtful outdoor care
+				</p>
+				<h1 className="mt-3 text-3xl font-bold leading-tight tracking-tight text-content-primary sm:text-4xl md:text-5xl">
+					Landscaping services built around your goals
+				</h1>
+				<p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-content-muted sm:text-lg">
+					We partner with homeowners and businesses to create and maintain
+					outdoor spaces they love.
+				</p>
+				<p className="mt-3 text-sm font-medium text-brand-light">
+					More than four decades of horticulture experience
+				</p>
+			</header>
+			<div className="mx-auto mt-8 flex max-w-7xl justify-center md:mt-10">
+				<RequestQuoteButton />
+			</div>
+			<div className="mx-auto mt-10 max-w-7xl md:mt-16">
+				<h2 className="text-center text-2xl font-bold tracking-tight text-content-primary sm:text-3xl">
+					Services offered
+				</h2>
+			</div>
+			<div className="mx-auto mt-4 flex max-w-7xl flex-col gap-4 md:flex-row md:gap-6">
 				<ServicesInfoBox
-					label={"Landscape Maintenance"}
+					label="Landscape maintenance"
 					infoArray={maintenanceInfo}
 				/>
 				<ServicesInfoBox
-					label={"Landscape Services"}
+					label="Landscape services"
 					infoArray={servicesInfo}
 				/>
 			</div>
-			<RequestQuoteButton />
+			<div className="mx-auto mt-8 flex max-w-7xl justify-center md:mt-10">
+				<RequestQuoteButton />
+			</div>
 		</section>
 	);
 };

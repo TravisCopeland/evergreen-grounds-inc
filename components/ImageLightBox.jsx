@@ -113,7 +113,7 @@ const ImageLightBox = ({
 					type="button"
 					onClick={handleClose}
 					aria-label="Close image viewer"
-					className="rounded-full border border-white/15 bg-white/10 p-2 text-white transition hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-light"
+					className="rounded-full border border-white/15 bg-white/10 p-2 text-white transition hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-light"
 				>
 					<MdClose size={24} aria-hidden="true" />
 				</button>
@@ -121,7 +121,7 @@ const ImageLightBox = ({
 			<button
 				type="button"
 				aria-label="Previous image"
-				className="gallery-viewer-control absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full border border-white/15 bg-black/50 p-3 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-light sm:left-6"
+				className="gallery-viewer-control absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full border border-white/15 bg-black/50 p-3 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-light sm:left-6"
 				onClick={showPrevious}
 			>
 				<FaArrowLeft size={18} aria-hidden="true" />
@@ -149,7 +149,7 @@ const ImageLightBox = ({
 			<button
 				type="button"
 				aria-label="Next image"
-				className="gallery-viewer-control absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full border border-white/15 bg-black/50 p-3 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-light sm:right-6"
+				className="gallery-viewer-control absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full border border-white/15 bg-black/50 p-3 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-light sm:right-6"
 				onClick={showNext}
 			>
 				<FaArrowRight size={18} aria-hidden="true" />

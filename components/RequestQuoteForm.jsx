@@ -48,13 +48,21 @@ const RequestQuoteForm = () => {
 	};
 
 	return (
-		<section className="md:w-1/2 p-2 md:px-12 md:py-24">
-			<div className="bg-white bg-opacity-5 flex flex-col justify-center border-solid border-2 border-lime rounded-lg p-6 md:p-12 md:mt-4">
-				<h2 className="text-white text-xl md:text-3xl font-semibold text-center pb-4">
-					Request Free Quote
-				</h2>
+		<section className="w-full md:flex-1">
+			<div className="flex flex-col justify-center rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-7 md:p-8 lg:p-10">
+				<div className="mb-6">
+					<p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-light">
+						Let&apos;s get started
+					</p>
+					<h2 className="mt-2 text-2xl font-bold tracking-tight text-content-primary sm:text-3xl">
+						Request Free Quote
+					</h2>
+					<p className="mt-2 text-sm leading-relaxed text-content-muted">
+						Tell us a little about your project and we&apos;ll be in touch.
+					</p>
+				</div>
 				<form
-					className="text-white flex flex-col justify-center"
+					className="flex flex-col justify-center text-content-primary"
 					onSubmit={handleSubmit(handleFormSubmit)}
 					aria-busy={loading}
 					noValidate
@@ -71,11 +79,11 @@ const RequestQuoteForm = () => {
 							{...register("companyWebsite")}
 						/>
 					</div>
-					<label htmlFor="name">
-						Name<span className="text-red-500"> *</span>
+					<label className="mb-1.5 text-sm font-medium" htmlFor="name">
+						Name<span className="text-danger"> *</span>
 					</label>
 					<input
-						className="text-black border-solid border-2 border-lime rounded-lg p-2 mb-2"
+						className="mb-4 rounded-xl border border-border bg-field px-3.5 py-3 text-field-content outline-none transition placeholder:text-content-muted/70 focus:border-brand focus:ring-4 focus:ring-brand/15"
 						type="text"
 						id="name"
 						name="name"
@@ -88,17 +96,17 @@ const RequestQuoteForm = () => {
 					{errors.name && (
 						<p
 							id="name-error"
-							className="text-error-red text-sm font-bold pb-2"
+							className="pb-2 text-sm font-semibold text-danger"
 							role="alert"
 						>
 							{errors.name.message}
 						</p>
 					)}
-					<label htmlFor="phone">
-						Phone<span className="text-red-500"> *</span>
+					<label className="mb-1.5 text-sm font-medium" htmlFor="phone">
+						Phone<span className="text-danger"> *</span>
 					</label>
 					<input
-						className="text-black border-solid border-2 border-lime rounded-lg p-2 mb-2"
+						className="mb-4 rounded-xl border border-border bg-field px-3.5 py-3 text-field-content outline-none transition placeholder:text-content-muted/70 focus:border-brand focus:ring-4 focus:ring-brand/15"
 						type="tel"
 						id="phone"
 						name="phone"
@@ -111,17 +119,17 @@ const RequestQuoteForm = () => {
 					{errors.phone && (
 						<p
 							id="phone-error"
-							className="text-error-red text-sm font-bold pb-2"
+							className="pb-2 text-sm font-semibold text-danger"
 							role="alert"
 						>
 							{errors.phone.message}
 						</p>
 					)}
-					<label htmlFor="address">
-						Address<span className="text-red-500"> *</span>
+					<label className="mb-1.5 text-sm font-medium" htmlFor="address">
+						Address<span className="text-danger"> *</span>
 					</label>
 					<input
-						className="text-black border-solid border-2 border-lime rounded-lg p-2 mb-2"
+						className="mb-4 rounded-xl border border-border bg-field px-3.5 py-3 text-field-content outline-none transition placeholder:text-content-muted/70 focus:border-brand focus:ring-4 focus:ring-brand/15"
 						type="text"
 						id="address"
 						name="address"
@@ -134,17 +142,17 @@ const RequestQuoteForm = () => {
 					{errors.address && (
 						<p
 							id="address-error"
-							className="text-error-red text-sm font-bold pb-2"
+							className="pb-2 text-sm font-semibold text-danger"
 							role="alert"
 						>
 							{errors.address.message}
 						</p>
 					)}
-					<label htmlFor="email">
-						Email<span className="text-red-500"> *</span>
+					<label className="mb-1.5 text-sm font-medium" htmlFor="email">
+						Email<span className="text-danger"> *</span>
 					</label>
 					<input
-						className="text-black border-solid border-2 border-lime rounded-lg p-2 mb-2"
+						className="mb-4 rounded-xl border border-border bg-field px-3.5 py-3 text-field-content outline-none transition placeholder:text-content-muted/70 focus:border-brand focus:ring-4 focus:ring-brand/15"
 						type="email"
 						id="email"
 						name="email"
@@ -163,15 +171,17 @@ const RequestQuoteForm = () => {
 					{errors.email && (
 						<p
 							id="email-error"
-							className="text-error-red text-sm font-bold pb-2"
+							className="pb-2 text-sm font-semibold text-danger"
 							role="alert"
 						>
 							{errors.email.message}
 						</p>
 					)}
-					<label htmlFor="description">How can we help?</label>
+					<label className="mb-1.5 text-sm font-medium" htmlFor="description">
+						How can we help?
+					</label>
 					<textarea
-						className="text-black border-solid border-2 border-lime rounded-lg p-2 my-4 h-auto"
+						className="mb-4 min-h-32 rounded-xl border border-border bg-field px-3.5 py-3 text-field-content outline-none transition placeholder:text-content-muted/70 focus:border-brand focus:ring-4 focus:ring-brand/15"
 						id="description"
 						name="description"
 						placeholder="Enter a brief description of services requested..."
@@ -179,7 +189,7 @@ const RequestQuoteForm = () => {
 						{...register("description")}
 					/>
 					<button
-						className="bg-lime hover:bg-lime-dark p-2 mt-2 mb-2 font-bold rounded-lg w-auto shadow-md shadow-lime-shadow hover:shadow-lime-shadow-dark"
+						className="mt-2 inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-brand px-5 py-3 font-semibold text-brand-foreground shadow-lg shadow-brand/20 transition duration-200 hover:-translate-y-0.5 hover:bg-brand-hover disabled:cursor-not-allowed disabled:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-light sm:w-auto"
 						type="submit"
 						disabled={loading}
 					>

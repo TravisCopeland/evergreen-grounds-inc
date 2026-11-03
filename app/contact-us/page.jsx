@@ -5,8 +5,8 @@ import { FaPhone, FaEnvelope } from "react-icons/fa";
 
 const ContactUsPage = () => {
 	return (
-		<section className="bg-zinc flex flex-col md:flex-row py-6">
-			<div className="hidden md:flex md:flex-col md:mt-8">
+		<section className="mx-auto flex min-h-[calc(100vh-9.5rem)] max-w-7xl flex-col gap-6 bg-page px-4 py-8 sm:px-6 md:flex-row md:items-center md:gap-10 md:py-12 lg:px-8">
+			<div className="order-2 grid gap-3 sm:grid-cols-2 md:order-1 md:w-1/2 md:grid-cols-1">
 				<ContactBox
 					name="Email Address"
 					content={emailAddress}
@@ -22,21 +22,17 @@ const ContactUsPage = () => {
 					<FaPhone size={36} />
 				</ContactBox>
 			</div>
-			<div className="text-white p-2 md:hidden">
-				<div className="flex flex-row">
-					<FaEnvelope className="m-1" />
-					<a href={`mailto:${emailAddress}`} className="pl-2">
-						{emailAddress}
-					</a>
+			<div className="order-1 md:order-2 md:w-1/2">
+				<div className="mb-5">
+					<p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-light">
+						We&apos;re here to help
+					</p>
+					<h1 className="mt-2 text-3xl font-bold tracking-tight text-content-primary sm:text-4xl">
+						Contact us
+					</h1>
 				</div>
-				<div className="flex flex-row py-3">
-					<FaPhone className="m-1" />
-					<a href={`tel:${phoneNumber}`} className="pl-2">
-						{phoneNumber}
-					</a>
-				</div>
+				<RequestQuoteForm />
 			</div>
-			<RequestQuoteForm />
 		</section>
 	);
 };

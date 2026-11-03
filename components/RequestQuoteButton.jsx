@@ -8,7 +8,7 @@ const RequestQuoteButton = () => {
 		<button
 			type="button"
 			onClick={() => router.push("/contact-us")}
-			className="bg-lime hover:bg-lime-dark text-lg md:text-2xl font-bold text-white p-2 rounded-lg w-full my-4 md:my-0 shadow-md shadow-lime-shadow hover:shadow-lime-shadow-dark"
+			className="w-full rounded-xl bg-brand px-6 py-3.5 text-base font-semibold text-brand-foreground shadow-lg shadow-brand/20 transition duration-200 hover:-translate-y-0.5 hover:bg-brand-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-light sm:w-auto sm:text-lg"
 		>
 			Request Free Quote
 		</button>
