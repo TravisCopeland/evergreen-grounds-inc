@@ -4,6 +4,20 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import Spinner from "@/components/Spinner";
 
+const formatPhoneNumber = (value) => {
+	const digits = value.replace(/\D/g, "").slice(0, 10);
+
+	if (digits.length <= 3) {
+		return digits;
+	}
+
+	if (digits.length <= 6) {
+		return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+	}
+
+	return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+};
+
 const RequestQuoteForm = () => {
 	const {
 		register,
@@ -112,11 +126,17 @@ const RequestQuoteForm = () => {
 						id="phone"
 						name="phone"
 						autoComplete="tel"
-						maxLength={40}
+						maxLength={14}
+						inputMode="tel"
 						required
 						aria-invalid={Boolean(errors.phone)}
 						aria-describedby={errors.phone ? "phone-error" : undefined}
-						{...register("phone", { required: "Phone Number is required" })}
+						{...register("phone", {
+							required: "Phone Number is required",
+							onChange: (event) => {
+								event.target.value = formatPhoneNumber(event.target.value);
+							},
+						})}
 					/>
 					{errors.phone && (
 						<p
