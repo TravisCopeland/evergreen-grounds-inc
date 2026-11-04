@@ -1,41 +1,72 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Evergreen Grounds, Inc.
 
-## Getting Started
+Marketing site for Evergreen Grounds, Inc., a family-owned landscaping
+company serving North Atlanta since 1983.
 
-First, run the development server:
+## Requirements
+
+- Node.js 20 or newer
+- npm
+
+## Local development
+
+Install dependencies and start the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). If that port is in use,
+Next.js will select the next available port.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Available scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start the development server |
+| `npm run build` | Create a production build |
+| `npm run start` | Serve the production build |
+| `npm run lint` | Run the Next.js ESLint checks |
 
 ## Quote request emails
 
-Configure Resend and the required environment variables by following
-[the quote request email setup guide](docs/email-setup.md).
+Quote requests are sent through [Resend](https://resend.com). Create a
+`.env.local` file with:
 
-## Learn More
+```env
+RESEND_API_KEY=re_...
+RESEND_FROM_EMAIL=quotes@your-verified-domain.com
+```
 
-To learn more about Next.js, take a look at the following resources:
+The sending domain must be verified in Resend. The `RESEND_FROM_EMAIL` value
+is the address used for owner notifications and customer confirmations.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+See [docs/email-setup.md](docs/email-setup.md) for the full email setup guide.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
+The site is designed for deployment on Vercel:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Import the repository into Vercel.
+2. Set the production environment variables listed above.
+3. Configure the production domain.
+4. Deploy the `main` branch.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The canonical site URL is configured in `constants.js`. Update `siteUrl` if
+the production domain changes.
+
+Before deploying, run:
+
+```bash
+npm run lint
+npm run build
+```
+
+## Project structure
+
+- `app/` — routes, page metadata, and the quote request API route
+- `components/` — reusable UI and client-side interactions
+- `assets/` — imported images and global styles
+- `lib/` — server-side helpers, including quote email templates and rate limiting
+- `public/` — static assets served from the site root
