@@ -5,10 +5,13 @@ import {
 	quoteRequestEmail,
 } from "@/lib/quote-request-emails";
 import { isRateLimited } from "@/lib/rate-limit";
+import { quoteRequestMessages } from "@/constants/content";
+import { quoteFormLimits } from "@/constants/form";
+import { getResendConfig } from "@/lib/env";
+import { validateQuoteRequest } from "@/lib/quote-request-validation";
 
 export const runtime = "nodejs";
 
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const logoAttachment = {
 	path: "https://evergreengrounds.com/email-logo.png",
 	filename: "evergreen-grounds-logo.png",
@@ -28,8 +31,7 @@ export async function POST(request) {
 	if (isRateLimited(request)) {
 		return jsonResponse(
 			{
-				error:
-					"Too many requests. Please wait a few minutes or call us to request a quote.",
+				error: quoteRequestMessages.rateLimited,
 			},
 			429,
 			{ "Retry-After": "900" }
@@ -37,8 +39,8 @@ export async function POST(request) {
 	}
 
 	const contentLength = Number(request.headers.get("content-length") || 0);
-	if (contentLength > 10_000) {
-		return jsonResponse({ error: "Please check the form and try again." }, 413);
+	if (contentLength > quoteFormLimits.requestBody) {
+		return jsonResponse({ error: quoteRequestMessages.invalidRequest }, 413);
 	}
 
 	let body;
@@ -46,72 +48,33 @@ export async function POST(request) {
 	try {
 		body = await request.json();
 	} catch {
-		return jsonResponse({ error: "Please check the form and try again." }, 400);
+		return jsonResponse({ error: quoteRequestMessages.invalidRequest }, 400);
 	}
 
-	if (!body || typeof body !== "object" || Array.isArray(body)) {
-		return jsonResponse({ error: "Please check the form and try again." }, 400);
-	}
-
-	const { name, phone, address, email, description, companyWebsite } = body;
-
-	if (
-		companyWebsite !== undefined &&
-		(typeof companyWebsite !== "string" ||
-			companyWebsite.length > 200 ||
-			companyWebsite.trim().length > 0)
-	) {
-		return jsonResponse({ error: "Unable to submit this request." }, 400);
-	}
-
-	const fields = { name, phone, address, email };
-	if (
-		Object.values(fields).some((value) => typeof value !== "string") ||
-		(description !== undefined && typeof description !== "string")
-	) {
-		return jsonResponse({ error: "Please check the form and try again." }, 400);
-	}
-
-	const requestDetails = {
-		name: name.trim(),
-		phone: phone.trim(),
-		address: address.trim(),
-		email: email.trim().toLowerCase(),
-		description:
-			typeof description === "string" ? description.trim() : "",
-	};
-
-	if (
-		!requestDetails.name ||
-		requestDetails.name.length > 120 ||
-		!requestDetails.phone ||
-		requestDetails.phone.length > 40 ||
-		!requestDetails.address ||
-		requestDetails.address.length > 200 ||
-		!emailPattern.test(requestDetails.email) ||
-		requestDetails.email.length > 254 ||
-		requestDetails.description.length > 2000
-	) {
+	const validation = validateQuoteRequest(body);
+	if (validation.error) {
 		return jsonResponse(
-			{ error: "Please check your details and try again." },
+			{ error: quoteRequestMessages[validation.error] },
 			400
 		);
 	}
+	const { requestDetails } = validation;
 
-	if (!process.env.RESEND_API_KEY || !process.env.RESEND_FROM_EMAIL) {
+	const resendConfig = getResendConfig();
+	if (!resendConfig) {
 		console.error("Quote request email is not configured.");
 		return jsonResponse(
-			{ error: "Quote requests are temporarily unavailable. Please call us." },
+			{ error: quoteRequestMessages.emailUnavailable },
 			503
 		);
 	}
 
-	const resend = new Resend(process.env.RESEND_API_KEY);
+	const resend = new Resend(resendConfig.apiKey);
 	let ownerError;
 
 	try {
 		const result = await resend.emails.send({
-			from: process.env.RESEND_FROM_EMAIL,
+			from: resendConfig.fromEmail,
 			to: emailAddress,
 			replyTo: requestDetails.email,
 			subject: `New quote request from ${requestDetails.name}`,
@@ -134,16 +97,13 @@ export async function POST(request) {
 
 	if (ownerError) {
 		console.error("Unable to send quote request notification:", ownerError);
-		return jsonResponse(
-			{ error: "We couldn't send your request. Please try again or call us." },
-			502
-		);
+		return jsonResponse({ error: quoteRequestMessages.sendFailed }, 502);
 	}
 
 	let confirmationError;
 	try {
 		const result = await resend.emails.send({
-			from: process.env.RESEND_FROM_EMAIL,
+			from: resendConfig.fromEmail,
 			to: requestDetails.email,
 			replyTo: emailAddress,
 			subject: "We received your quote request",

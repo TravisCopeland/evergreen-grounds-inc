@@ -28,6 +28,7 @@ Next.js will select the next available port.
 | `npm run build` | Create a production build |
 | `npm run start` | Serve the production build |
 | `npm run lint` | Run the Next.js ESLint checks |
+| `npm test` | Run the quote request validation tests |
 
 ## Quote request emails
 
@@ -60,6 +61,7 @@ Before deploying, run:
 
 ```bash
 npm run lint
+npm test
 npm run build
 ```
 

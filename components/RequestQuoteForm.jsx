@@ -4,8 +4,8 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { track } from "@vercel/analytics";
 import Spinner from "@/components/Spinner";
-
-const DESCRIPTION_MAX_LENGTH = 2000;
+import { quoteFormContent } from "@/constants/content";
+import { quoteFormLimits } from "@/constants/form";
 
 const formatPhoneNumber = (value) => {
 	const digits = value.replace(/\D/g, "").slice(0, 10);
@@ -44,7 +44,7 @@ const RequestQuoteForm = () => {
 
 			if (!response.ok) {
 				throw new Error(
-					result.error || "We couldn't send your request. Please try again."
+					result.error || quoteFormContent.submitFallback
 				);
 			}
 
@@ -53,14 +53,14 @@ const RequestQuoteForm = () => {
 			track("quote_submitted");
 			toast.success(
 				result.confirmationSent
-					? "Request received. A confirmation email is on its way."
-					: "Request received. We couldn't send a confirmation email, but we'll be in touch."
+					? quoteFormContent.confirmationSent
+					: quoteFormContent.confirmationPending
 			);
 		} catch (error) {
 			toast.error(
 				error instanceof Error
 					? error.message
-					: "We couldn't send your request. Please try again."
+					: quoteFormContent.submitFallback
 			);
 		} finally {
 			setLoading(false);
@@ -72,13 +72,13 @@ const RequestQuoteForm = () => {
 			<div className="flex flex-col justify-center rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-7 md:p-8 lg:p-10">
 				<div className="mb-6">
 					<p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-light">
-						Let&apos;s get started
+						{quoteFormContent.eyebrow}
 					</p>
 					<h2 className="mt-2 text-2xl font-bold tracking-tight text-content-primary sm:text-3xl">
-						Request Free Quote
+						{quoteFormContent.title}
 					</h2>
 					<p className="mt-2 text-sm leading-relaxed text-content-muted">
-						Tell us a little about your project and we&apos;ll be in touch.
+						{quoteFormContent.description}
 					</p>
 				</div>
 				<form
@@ -100,7 +100,7 @@ const RequestQuoteForm = () => {
 						/>
 					</div>
 					<label className="mb-1.5 text-sm font-medium" htmlFor="name">
-						Name<span className="text-danger"> *</span>
+						{quoteFormContent.labels.name}<span className="text-danger"> *</span>
 					</label>
 					<input
 						className="mb-4 rounded-xl border border-border bg-field px-3.5 py-3 text-field-content outline-none transition placeholder:text-content-muted/70 focus:border-brand focus:ring-4 focus:ring-brand/15"
@@ -108,11 +108,13 @@ const RequestQuoteForm = () => {
 						id="name"
 						name="name"
 						autoComplete="name"
-						maxLength={120}
+						maxLength={quoteFormLimits.name}
 						required
 						aria-invalid={Boolean(errors.name)}
 						aria-describedby={errors.name ? "name-error" : undefined}
-						{...register("name", { required: "Name is required" })}
+						{...register("name", {
+							required: quoteFormContent.messages.nameRequired,
+						})}
 					/>
 					{errors.name && (
 						<p
@@ -124,7 +126,7 @@ const RequestQuoteForm = () => {
 						</p>
 					)}
 					<label className="mb-1.5 text-sm font-medium" htmlFor="phone">
-						Phone<span className="text-danger"> *</span>
+						{quoteFormContent.labels.phone}<span className="text-danger"> *</span>
 					</label>
 					<input
 						className="mb-4 rounded-xl border border-border bg-field px-3.5 py-3 text-field-content outline-none transition placeholder:text-content-muted/70 focus:border-brand focus:ring-4 focus:ring-brand/15"
@@ -138,7 +140,7 @@ const RequestQuoteForm = () => {
 						aria-invalid={Boolean(errors.phone)}
 						aria-describedby={errors.phone ? "phone-error" : undefined}
 						{...register("phone", {
-							required: "Phone Number is required",
+							required: quoteFormContent.messages.phoneRequired,
 							onChange: (event) => {
 								event.target.value = formatPhoneNumber(event.target.value);
 							},
@@ -154,7 +156,7 @@ const RequestQuoteForm = () => {
 						</p>
 					)}
 					<label className="mb-1.5 text-sm font-medium" htmlFor="address">
-						Address<span className="text-danger"> *</span>
+						{quoteFormContent.labels.address}<span className="text-danger"> *</span>
 					</label>
 					<input
 						className="mb-4 rounded-xl border border-border bg-field px-3.5 py-3 text-field-content outline-none transition placeholder:text-content-muted/70 focus:border-brand focus:ring-4 focus:ring-brand/15"
@@ -162,11 +164,13 @@ const RequestQuoteForm = () => {
 						id="address"
 						name="address"
 						autoComplete="street-address"
-						maxLength={200}
+						maxLength={quoteFormLimits.address}
 						required
 						aria-invalid={Boolean(errors.address)}
 						aria-describedby={errors.address ? "address-error" : undefined}
-						{...register("address", { required: "Address is required" })}
+						{...register("address", {
+							required: quoteFormContent.messages.addressRequired,
+						})}
 					/>
 					{errors.address && (
 						<p
@@ -178,7 +182,7 @@ const RequestQuoteForm = () => {
 						</p>
 					)}
 					<label className="mb-1.5 text-sm font-medium" htmlFor="email">
-						Email<span className="text-danger"> *</span>
+						{quoteFormContent.labels.email}<span className="text-danger"> *</span>
 					</label>
 					<input
 						className="mb-4 rounded-xl border border-border bg-field px-3.5 py-3 text-field-content outline-none transition placeholder:text-content-muted/70 focus:border-brand focus:ring-4 focus:ring-brand/15"
@@ -186,15 +190,15 @@ const RequestQuoteForm = () => {
 						id="email"
 						name="email"
 						autoComplete="email"
-						maxLength={254}
+						maxLength={quoteFormLimits.email}
 						required
 						aria-invalid={Boolean(errors.email)}
 						aria-describedby={errors.email ? "email-error" : undefined}
 						{...register("email", {
-							required: "Email is required so we can confirm your request",
+							required: quoteFormContent.messages.emailRequired,
 							pattern: {
 								value: /^\S+@\S+\.\S+$/,
-								message: "Enter a valid email address",
+								message: quoteFormContent.messages.invalidEmail,
 							},
 						})}
 					/>
@@ -208,15 +212,15 @@ const RequestQuoteForm = () => {
 						</p>
 					)}
 					<label className="mb-1.5 text-sm font-medium" htmlFor="description">
-						How can we help?
+						{quoteFormContent.labels.project}
 					</label>
 					<textarea
 						className="min-h-32 rounded-xl border border-border bg-field px-3.5 py-3 text-field-content outline-none transition placeholder:text-content-muted/70 focus:border-brand focus:ring-4 focus:ring-brand/15"
 						id="description"
 						name="description"
-						placeholder="Tell us about your project, such as lawn care, planting, drainage, or landscape installation..."
+						placeholder={quoteFormContent.placeholders.project}
 						rows={5}
-						maxLength={DESCRIPTION_MAX_LENGTH}
+						maxLength={quoteFormLimits.description}
 						aria-describedby="description-help"
 						{...register("description", {
 							onChange: (event) =>
@@ -229,7 +233,7 @@ const RequestQuoteForm = () => {
 						aria-live="polite"
 					>
 						{descriptionLength.toLocaleString()} /{" "}
-						{DESCRIPTION_MAX_LENGTH.toLocaleString()} characters
+						{quoteFormLimits.description.toLocaleString()} characters
 					</p>
 					<button
 						className="button-primary mt-2 min-h-12 w-full disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
@@ -237,7 +241,11 @@ const RequestQuoteForm = () => {
 						disabled={loading}
 						aria-disabled={loading}
 					>
-						{loading ? <Spinner loading={loading} /> : "Request Quote"}
+						{loading ? (
+							<Spinner loading={loading} />
+						) : (
+							quoteFormContent.submitLabel
+						)}
 					</button>
 				</form>
 			</div>
