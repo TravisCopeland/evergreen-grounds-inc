@@ -19,10 +19,20 @@ export const metadata = {
 		type: "website",
 		locale: "en_US",
 		siteName: "Evergreen Grounds, Inc.",
+		images: [
+			{
+				url: "/email-logo.png",
+				width: 600,
+				height: 180,
+				alt: "Evergreen Grounds, Inc.",
+			},
+		],
 	},
 	twitter: {
-		card: "summary",
+		card: "summary_large_image",
+		images: ["/email-logo.png"],
 	},
+	icons: { icon: "/favicon.ico" },
 };
 
 const RootLayout = ({ children }) => {

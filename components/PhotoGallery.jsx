@@ -4,6 +4,7 @@ import Image from "next/image";
 import { images } from "@/constants";
 import RequestQuoteButton from "./RequestQuoteButton";
 import ImageLightBox from "./ImageLightBox";
+import { track } from "@vercel/analytics";
 
 const PhotoGallery = () => {
 	const [isFullScreen, setIsFullScreen] = useState(false);
@@ -11,6 +12,7 @@ const PhotoGallery = () => {
 	const openerRef = useRef(null);
 
 	const handleImageClick = (index, event) => {
+		track("gallery_photo_opened", { photo_number: index + 1 });
 		setIsFullScreen(true);
 		setActiveIndex(index);
 		openerRef.current = event.currentTarget;

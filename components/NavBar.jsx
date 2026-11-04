@@ -46,20 +46,30 @@ const NavBar = () => {
 							}
 							onClick={() => setIsMobileMenuOpen((prev) => !prev)}
 						>
-							<svg
-								className="h-6 w-6"
-								fill="none"
-								viewBox="0 0 24 24"
-								strokeWidth="1.5"
-								stroke="currentColor"
+							<span
+								className="relative block h-6 w-6"
 								aria-hidden="true"
 							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+								<span
+									className={`absolute left-0 top-1/2 h-0.5 w-6 rounded-full bg-current transition-transform duration-300 ease-in-out motion-reduce:transition-none ${
+										isMobileMenuOpen
+											? "translate-y-0 rotate-45"
+											: "-translate-y-2"
+									}`}
 								/>
-							</svg>
+								<span
+									className={`absolute left-0 top-1/2 h-0.5 w-6 -translate-y-1/2 rounded-full bg-current transition-opacity duration-200 ease-in-out motion-reduce:transition-none ${
+										isMobileMenuOpen ? "opacity-0" : "opacity-100"
+									}`}
+								/>
+								<span
+									className={`absolute left-0 top-1/2 h-0.5 w-6 rounded-full bg-current transition-transform duration-300 ease-in-out motion-reduce:transition-none ${
+										isMobileMenuOpen
+											? "translate-y-0 -rotate-45"
+											: "translate-y-1.5"
+									}`}
+								/>
+							</span>
 						</button>
 					</div>
 

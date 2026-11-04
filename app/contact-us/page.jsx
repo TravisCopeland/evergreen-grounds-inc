@@ -26,6 +26,7 @@ const ContactUsPage = () => {
 					name="Email Address"
 					content={emailAddress}
 					wrapper={`mailto:${emailAddress}`}
+					eventName="email_clicked"
 				>
 					<FaEnvelope size={36} />
 				</ContactBox>
@@ -33,6 +34,7 @@ const ContactUsPage = () => {
 					name="Call or Text"
 					content={phoneNumber}
 					wrapper={`tel:${phoneNumber}`}
+					eventName="phone_clicked"
 				>
 					<FaPhone size={36} />
 				</ContactBox>

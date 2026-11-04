@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { track } from "@vercel/analytics";
 import Spinner from "@/components/Spinner";
 
 const formatPhoneNumber = (value) => {
@@ -45,6 +46,7 @@ const RequestQuoteForm = () => {
 			}
 
 			reset();
+			track("quote_submitted");
 			toast.success(
 				result.confirmationSent
 					? "Request received. A confirmation email is on its way."
