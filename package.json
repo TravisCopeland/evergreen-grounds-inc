@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "node --experimental-default-type=module --test tests/quote-request-validation.test.js",
+    "lcov-report": "c8 --reporter=html --reporter=lcov --reports-dir coverage npm test"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
@@ -21,6 +23,7 @@
     "resend": "^6.37.0"
   },
   "devDependencies": {
+    "c8": "^10.1.2",
     "eslint": "^9.39.5",
     "eslint-config-next": "15.5.28",
     "postcss": "8.5.32",

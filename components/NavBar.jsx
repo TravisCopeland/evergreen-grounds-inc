@@ -5,13 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "@/assets/images/logo-standard-white.png";
 import ThemeToggle from "./ThemeToggle";
-
-const links = [
-	{ href: "/", label: "Home" },
-	{ href: "/services", label: "Services" },
-	{ href: "/gallery", label: "Gallery" },
-	{ href: "/contact-us", label: "Contact Us" },
-];
+import {
+	navigationContent,
+	navigationLinks as links,
+} from "@/constants/content";
 
 const NavBar = () => {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -42,7 +39,9 @@ const NavBar = () => {
 							aria-controls="mobile-menu"
 							aria-expanded={isMobileMenuOpen}
 							aria-label={
-								isMobileMenuOpen ? "Close main menu" : "Open main menu"
+								isMobileMenuOpen
+									? navigationContent.closeMenu
+									: navigationContent.openMenu
 							}
 							onClick={() => setIsMobileMenuOpen((prev) => !prev)}
 						>
