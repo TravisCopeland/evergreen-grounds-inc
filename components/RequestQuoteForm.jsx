@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import { track } from "@vercel/analytics";
 import Spinner from "@/components/Spinner";
 
+const DESCRIPTION_MAX_LENGTH = 2000;
+
 const formatPhoneNumber = (value) => {
 	const digits = value.replace(/\D/g, "").slice(0, 10);
 
@@ -28,6 +30,7 @@ const RequestQuoteForm = () => {
 	} = useForm();
 
 	const [loading, setLoading] = useState(false);
+	const [descriptionLength, setDescriptionLength] = useState(0);
 
 	const handleFormSubmit = async (values) => {
 		setLoading(true);
@@ -46,6 +49,7 @@ const RequestQuoteForm = () => {
 			}
 
 			reset();
+			setDescriptionLength(0);
 			track("quote_submitted");
 			toast.success(
 				result.confirmationSent
@@ -207,14 +211,26 @@ const RequestQuoteForm = () => {
 						How can we help?
 					</label>
 					<textarea
-						className="mb-4 min-h-32 rounded-xl border border-border bg-field px-3.5 py-3 text-field-content outline-none transition placeholder:text-content-muted/70 focus:border-brand focus:ring-4 focus:ring-brand/15"
+						className="min-h-32 rounded-xl border border-border bg-field px-3.5 py-3 text-field-content outline-none transition placeholder:text-content-muted/70 focus:border-brand focus:ring-4 focus:ring-brand/15"
 						id="description"
 						name="description"
-						placeholder="Enter a brief description of services requested..."
+						placeholder="Tell us about your project, such as lawn care, planting, drainage, or landscape installation..."
 						rows={5}
-						maxLength={2000}
-						{...register("description")}
+						maxLength={DESCRIPTION_MAX_LENGTH}
+						aria-describedby="description-help"
+						{...register("description", {
+							onChange: (event) =>
+								setDescriptionLength(event.target.value.length),
+						})}
 					/>
+					<p
+						id="description-help"
+						className="mb-4 mt-1 text-right text-xs text-content-muted"
+						aria-live="polite"
+					>
+						{descriptionLength.toLocaleString()} /{" "}
+						{DESCRIPTION_MAX_LENGTH.toLocaleString()} characters
+					</p>
 					<button
 						className="button-primary mt-2 min-h-12 w-full disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
 						type="submit"
