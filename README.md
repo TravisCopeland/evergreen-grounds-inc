@@ -29,6 +29,11 @@ Next.js will select the next available port.
 | `npm run start` | Serve the production build |
 | `npm run lint` | Run the Next.js ESLint checks |
 | `npm test` | Run the quote request validation tests |
+| `npm run lcov-report` | Generate the LCOV coverage report |
+
+After running `npm run lcov-report`, open
+`coverage/lcov-report/index.html` in a browser to see covered and uncovered
+lines.
 
 ## Quote request emails
 
