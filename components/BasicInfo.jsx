@@ -1,6 +1,6 @@
 import { FaDotCircle } from "react-icons/fa";
 import Image from "next/image";
-import { cities } from "@/constants";
+import { cities } from "@/constants/content";
 import backyard from "@/assets/images/backyard2l.webp";
 
 const BasicInfo = () => {

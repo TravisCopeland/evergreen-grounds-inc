@@ -1,11 +1,11 @@
 import { Resend } from "resend";
-import { emailAddress } from "@/constants";
+import { emailAddress } from "@/constants/content";
 import {
 	confirmationEmail,
 	quoteRequestEmail,
 } from "@/lib/quote-request-emails";
 import { isRateLimited } from "@/lib/rate-limit";
-import { quoteRequestMessages } from "@/constants/content";
+import { quoteRequestMessages } from "@/constants/form";
 import { quoteFormLimits } from "@/constants/form";
 import { getResendConfig } from "@/lib/env";
 import { validateQuoteRequest } from "@/lib/quote-request-validation";

@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
 import Image from "next/image";
-import { images } from "@/constants";
+import { images } from "@/constants/content";
 import RequestQuoteButton from "./RequestQuoteButton";
 import ImageLightBox from "./ImageLightBox";
 import { track } from "@vercel/analytics";

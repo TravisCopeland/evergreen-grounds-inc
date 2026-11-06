@@ -5,7 +5,7 @@ import { Analytics } from "@vercel/analytics/next";
 import "@/assets/styles/globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import Script from "next/script";
-import { siteUrl } from "@/constants";
+import { siteUrl } from "@/constants/content";
 
 export const metadata = {
 	metadataBase: new URL(siteUrl),

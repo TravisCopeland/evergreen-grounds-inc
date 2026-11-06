@@ -4,8 +4,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { track } from "@vercel/analytics";
 import Spinner from "@/components/Spinner";
-import { quoteFormContent } from "@/constants/content";
-import { quoteFormLimits } from "@/constants/form";
+import { quoteFormContent, quoteFormLimits } from "@/constants/form";
 
 const formatPhoneNumber = (value) => {
 	const digits = value.replace(/\D/g, "").slice(0, 10);
