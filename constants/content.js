@@ -56,7 +56,7 @@ export const images = [
 
 export const emailAddress = "evergreengroundsinc@gmail.com";
 
-export const phoneNumber = "770-262-2190";
+export const phoneNumber = "423-241-3973";
 
 export const siteUrl = "https://evergreengrounds.com";
 

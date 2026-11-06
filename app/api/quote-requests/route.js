@@ -1,5 +1,5 @@
 import { Resend } from "resend";
-import { emailAddress } from "@/constants/content";
+import { emailAddress, phoneNumber } from "@/constants/content";
 import {
 	confirmationEmail,
 	quoteRequestEmail,
@@ -114,7 +114,7 @@ export async function POST(request) {
 				"",
 				"Thanks for contacting Evergreen Grounds. We received your quote request and will be in touch as soon as possible.",
 				"",
-				"If you need to reach us in the meantime, call 770-262-2190.",
+				`If you need to reach us in the meantime, call ${phoneNumber}.`,
 				"",
 				"Evergreen Grounds, Inc.",
 			].join("\n"),
