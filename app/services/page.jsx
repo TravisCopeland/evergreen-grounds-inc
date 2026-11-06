@@ -1,6 +1,6 @@
 import ServicesInfoBox from "@/components/ServicesInfoBox";
 import RequestQuoteButton from "@/components/RequestQuoteButton";
-import { maintenanceInfo, servicesInfo } from "@/constants";
+import { maintenanceInfo, servicesInfo } from "@/constants/content";
 
 export const metadata = {
 	title: "Landscaping Services",

@@ -1,6 +1,6 @@
 import ContactBox from "@/components/ContactBox";
 import RequestQuoteForm from "@/components/RequestQuoteForm";
-import { emailAddress, phoneNumber } from "@/constants";
+import { emailAddress, phoneNumber } from "@/constants/content";
 import { FaPhone, FaEnvelope } from "react-icons/fa";
 
 export const metadata = {

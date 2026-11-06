@@ -1,7 +1,7 @@
 import BasicInfo from "@/components/BasicInfo";
 import DirectContactLinks from "@/components/DirectContactLinks";
 import RequestQuoteForm from "@/components/RequestQuoteForm";
-import { emailAddress, phoneNumber } from "@/constants";
+import { emailAddress, phoneNumber } from "@/constants/content";
 
 export const metadata = {
 	title: {
